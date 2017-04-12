@@ -1,11 +1,12 @@
-// PlytaGlowna.cpp: Okreœla punkt wejœcia dla aplikacji konsoli.
-//
-
 #include "stdafx.h"
+#include "PlytaGlowna.h"
 
 
-int main()
+PlytaGlowna::PlytaGlowna()
 {
-    return 0;
 }
 
+
+PlytaGlowna::~PlytaGlowna()
+{
+}
