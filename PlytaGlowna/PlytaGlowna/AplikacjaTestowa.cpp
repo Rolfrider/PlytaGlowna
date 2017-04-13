@@ -2,7 +2,10 @@
 //
 
 #include "stdafx.h"
-
+#include "PlytaGlowna.h"
+#include "Soket.h"
+#include "PCI.h"
+#include<iostream>
 
 int main()
 {
