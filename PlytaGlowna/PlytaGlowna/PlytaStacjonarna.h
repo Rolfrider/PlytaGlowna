@@ -3,6 +3,7 @@
 #include "Soket.h"
 #include "PCI.h"
 #include "SzynaPamieci.h"
+#include <vector>
 typedef string Producent;
 
 class PlytaStacjonarna :
@@ -25,7 +26,7 @@ public:
 	PlytaStacjonarna& operator--();
 	PlytaStacjonarna operator++(int);
 	PlytaStacjonarna operator--(int);
-	PlytaStacjonarna& operator=(const PlytaStacjonarna &p);
+	PlytaStacjonarna& operator=( PlytaStacjonarna p);
 	PCI& operator[](const int i);
 	operator int();
 	PlytaStacjonarna& operator^(const int a);
@@ -34,7 +35,7 @@ protected:
 	static int iloscPlyt;
 	Producent marka;
 	Soket soket;
-	SzynaPamieci* RAM;
+	vector <SzynaPamieci> RAM;
 	PCI* karty;
 	Producent losuj();
 	int iloscSzyn;
