@@ -20,11 +20,14 @@ PlytaStacjonarna::PlytaStacjonarna()
 	szynyZajete = (rand() % iloscSzyn + 1);
 	PCIzajete = (rand() % wejsciaPCI + 1);
 
-	if (iloscSzyn >= szynyZajete)
-		RAM = new SzynaPamieci[szynyZajete];
-	else {
-		RAM = nullptr;
-		szynyZajete = 0;
+	RAM.reserve(iloscSzyn);// Rezerwuje nam miejsce na max tyle elementów ile jest szyn
+	if (iloscSzyn!=0)
+	{
+		for (int i = 0; i < szynyZajete; i++)
+		{
+			RAM.push_back(SzynaPamieci());
+		}
+	
 	}
 	if (wejsciaPCI >= PCIzajete)
 		karty = new PCI[PCIzajete];
@@ -38,13 +41,15 @@ PlytaStacjonarna::PlytaStacjonarna(int iloscSzyn, int szynyZajete, int wejsciaPC
 	iloscSzyn(iloscSzyn), szynyZajete(szynyZajete), wejsciaPCI(wejsciaPCI), PCIzajete(PCIzajete) {
 	marka = losuj();
 	iloscPlyt++;
-	DEBUG("Tworze plyte glowna")
-		if (iloscSzyn >= szynyZajete)
-			RAM = new SzynaPamieci[szynyZajete];
-		else {
-			RAM = NULL;
-			szynyZajete = 0;
+	RAM.reserve(iloscSzyn);// Rezerwuje nam miejsce na max tyle elementów ile jest szyn
+	if (iloscSzyn != 0)
+	{
+		for (int i = 0; i < szynyZajete; i++)
+		{
+			RAM.push_back(SzynaPamieci());
 		}
+
+	}
 		if (wejsciaPCI >= PCIzajete)
 			karty = new PCI[PCIzajete];
 		else {
@@ -63,14 +68,7 @@ PlytaStacjonarna::PlytaStacjonarna(PlytaStacjonarna &p) { // konstruktor kopiuj¹
 	wejsciaPCI = p.wejsciaPCI;
 	szynyZajete = p.szynyZajete;
 	PCIzajete = p.PCIzajete;
-	if (p.RAM != NULL) {
-		RAM = new SzynaPamieci[szynyZajete];
-		for (int i = 0; i < szynyZajete; i++) {
-			RAM[i] = p.RAM[i];
-		}
-	}
-	else
-		RAM = nullptr;
+	p.RAM = RAM;
 
 	if (p.karty != NULL) {
 		karty = new PCI[PCIzajete];
@@ -89,7 +87,7 @@ bool PlytaStacjonarna::operator==(PlytaStacjonarna &p) {
 
 PlytaStacjonarna& PlytaStacjonarna::operator^(const int a) {
 	if (a > 0) {
-		if (RAM != NULL) {
+		if (RAM.size() != 0) {
 			cout << "Przetaktowuje pamiec RAM" << endl;
 			RAM[0].PrzetaktujGora(RAM[0]);
 		}
@@ -97,7 +95,7 @@ PlytaStacjonarna& PlytaStacjonarna::operator^(const int a) {
 			cout << " Nie ma RAMU" << endl;
 	}
 	else if (a < 0) {
-		if (RAM != NULL) {
+		if (RAM.size() != 0) {
 			cout << "Przetaktowuje pamiec RAM" << endl;
 			RAM[0].PrzetaktujDol(RAM[0]);
 		}
@@ -126,19 +124,15 @@ PCI& PlytaStacjonarna::operator[](const int i) {
 	}
 }
 
-PlytaStacjonarna& PlytaStacjonarna::operator=(const PlytaStacjonarna &p) {
+PlytaStacjonarna& PlytaStacjonarna::operator=( PlytaStacjonarna p) {
 	iloscSzyn = p.iloscSzyn;
 	wejsciaPCI = p.wejsciaPCI;
 	szynyZajete = p.szynyZajete;
 	PCIzajete = p.PCIzajete;
-
-	delete[]RAM;
+	RAM.reserve(iloscSzyn);
 	delete[]karty;
-
-	RAM = new SzynaPamieci[szynyZajete];
-	for (int i = 0; i < szynyZajete; i++) {
-		RAM[i] = p.RAM[i];
-	}
+	
+	RAM.swap(p.RAM);
 
 	karty = new PCI[PCIzajete];
 	for (int i = 0; i < PCIzajete; i++) {
@@ -152,72 +146,38 @@ PlytaStacjonarna& PlytaStacjonarna::operator=(const PlytaStacjonarna &p) {
 
 PlytaStacjonarna& PlytaStacjonarna::operator++() { //Dodaje RAM jesli to mozliwe
 	cout << "Procedura dodania nowej kosci RAM" << endl;
-	if (RAM != NULL) {
-		SzynaPamieci *RAM1 = new SzynaPamieci[szynyZajete];
-		for (int i = 0; i < szynyZajete; i++) {
-			RAM1[i] = RAM[i];
-		}
+	if (RAM.size() != 0) 
+	{
 		szynyZajete++;
 		if (iloscSzyn >= szynyZajete) {
-			RAM = new SzynaPamieci[szynyZajete];
-			for (int i = 0; i < szynyZajete - 1; i++) {
-				RAM[i] = RAM1[i];
-			}
+			RAM.push_back(SzynaPamieci());
 		}
-		else {
-			szynyZajete--;
-			for (int i = 0; i < szynyZajete; i++) {
-				RAM[i] = RAM1[i];
-			}
+		else 
 			cout << "Nie mozna dodac, wsszystkie szyny pamieci zajete" << endl;
 
-		}
-		delete[]RAM1;
 	}
-	else {
+	else
+	{
 		szynyZajete++;
 		if (iloscSzyn >= szynyZajete)
-			RAM = new SzynaPamieci[szynyZajete];
-		else {
-			szynyZajete--;
-			RAM = new SzynaPamieci[szynyZajete];
-		}
+			RAM.push_back(SzynaPamieci());
+		else 
+			cout << "Nie mozna dodac, wsszystkie szyny pamieci zajete" << endl;
+
 	}
 	return *this;
 }
 
 PlytaStacjonarna& PlytaStacjonarna::operator--() { //Odejmowanie RAM jesli to mozliwe
 	cout << "Procedura  odejmowania kosci RAM" << endl;
-	if (RAM != NULL) {
-		SzynaPamieci *RAM1 = new SzynaPamieci[szynyZajete];
-		for (int i = 0; i < szynyZajete; i++) {
-			RAM1[i] = RAM[i];
-		}
-		szynyZajete--;
-		if (szynyZajete > 0) {
-			RAM = new SzynaPamieci[szynyZajete];
-			for (int i = 0; i < szynyZajete; i++) {
-				RAM[i] = RAM1[i];
-			}
-		}
-		else {
-			szynyZajete++;
-			for (int i = 0; i < szynyZajete; i++) {
-				RAM[i] = RAM1[i];
-			}
-			cout << "Nie mozna odjac RAMU" << endl;
-
-		}
-		delete[]RAM1;
-	}
-	else {
+	if (RAM.size() != 0)
+	{
 		szynyZajete--;
 		if (szynyZajete > 0)
-			RAM = new SzynaPamieci[szynyZajete];
-		else {
-			szynyZajete++;
-			RAM = new SzynaPamieci[szynyZajete];
-		}
+			RAM.pop_back();
+		else 
+			cout << "Nie mozna odjac RAMU" << endl;
+		
 	}
 
 	return *this;
@@ -386,8 +346,6 @@ int PlytaStacjonarna::ZwrocLiczbePlyt() {
 
 PlytaStacjonarna::~PlytaStacjonarna()
 {
-	if (RAM != NULL)
-		delete[]RAM;
 	if (karty != NULL)
 		delete[]karty;
 	DEBUG("Niszcze plyte glowna")
