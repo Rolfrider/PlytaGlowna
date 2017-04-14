@@ -4,6 +4,7 @@
 #include "PCI.h"
 #include "SzynaPamieci.h"
 #include <vector>
+#include <deque>
 typedef string Producent;
 
 class PlytaStacjonarna :
@@ -26,7 +27,7 @@ public:
 	PlytaStacjonarna& operator--();
 	PlytaStacjonarna operator++(int);
 	PlytaStacjonarna operator--(int);
-	PlytaStacjonarna& operator=( PlytaStacjonarna p);
+	PlytaStacjonarna& operator=(const PlytaStacjonarna &p);
 	PCI& operator[](const int i);
 	operator int();
 	PlytaStacjonarna& operator^(const int a);
@@ -36,7 +37,7 @@ protected:
 	Producent marka;
 	Soket soket;
 	vector <SzynaPamieci> RAM;
-	PCI* karty;
+	deque <PCI> karty;
 	Producent losuj();
 	int iloscSzyn;
 	int szynyZajete;
