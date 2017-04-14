@@ -144,6 +144,7 @@
     <ClInclude Include="PCI.h" />
     <ClInclude Include="PlytaGlowna.h" />
     <ClInclude Include="PlytaStacjonarna.h" />
+    <ClInclude Include="Poprawnosc.h" />
     <ClInclude Include="Soket.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="SzynaPamieci.h" />

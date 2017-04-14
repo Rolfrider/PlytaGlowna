@@ -2,6 +2,8 @@
 #include "PlytaGlowna.h"
 #include "Soket.h"
 #include "PCI.h"
+#include<iostream>
+//#include"Poprawnosc.h"
 #include "SzynaPamieci.h"
 #include <vector>
 #include <deque>
@@ -22,6 +24,7 @@ public:
 
 
 	friend ostream& operator<< (ostream &s, PlytaStacjonarna &p);
+	friend istream& operator >> (istream &o, PlytaStacjonarna &p);
 	bool operator==(PlytaStacjonarna &p);
 	PlytaStacjonarna& operator++();
 	PlytaStacjonarna& operator--();
@@ -33,6 +36,7 @@ public:
 	PlytaStacjonarna& operator^(const int a);
 
 protected:
+	int Wprowadzanie_inta(string zapytanie);
 	static int iloscPlyt;
 	Producent marka;
 	Soket soket;

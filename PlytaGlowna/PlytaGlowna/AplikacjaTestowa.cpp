@@ -4,30 +4,15 @@
 #include "stdafx.h"
 #include "PlytaGlowna.h"
 #include"PlytaStacjonarna.h"
-#include "Soket.h"
-#include "PCI.h"
 #include<iostream>
 
 int main()
 {
+
 	srand(time(NULL));
-	cout << "askjdddddddddddddd";
 	PlytaStacjonarna p;
-	cout << "xD";
-	PlytaStacjonarna p1(p);
-	cout << p1 << endl;
-	cout << p << endl;
-	p1++;
-	cout << p1 << endl;
-	p--;
-	cout << p << endl;
-	--p1;
-	cout << p1 << endl;
-	++p;
-	cout << p << endl;
-	p1 = p;
-	cout << p1 << endl;
-	cout << p << endl;
+	cin >> p;
+	cout << p;
     return 0;
 }
 
