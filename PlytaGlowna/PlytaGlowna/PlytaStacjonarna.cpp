@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "PlytaStacjonarna.h"
-#include<iostream>
+
 #ifdef _DEBUG
 #define DEBUG(x)
 #else
@@ -13,7 +13,7 @@ PlytaStacjonarna::PlytaStacjonarna()
 {
 	DEBUG("Tworze plyte glowna")
 
-		marka = losuj();
+	marka = losuj();
 	iloscPlyt++;
 	iloscSzyn = (rand() % 6 + 1);
 	wejsciaPCI = (rand() % 4 + 1);
@@ -211,7 +211,49 @@ ostream& operator << (ostream &s, PlytaStacjonarna &p) {
 	return s;
 }
 
+istream& operator >> (istream &o, PlytaStacjonarna &p) {
+	cout << "Podaj nazwe producenta plyty :" << endl;
+	o >> p.marka;
+	p.iloscSzyn = p.Wprowadzanie_inta("Podaj liczbe szyn pamieci ");
+	p.szynyZajete = p.Wprowadzanie_inta("Podaj liczbe zajetych szyn pamieci ");
+	p.wejsciaPCI = p.Wprowadzanie_inta("Podaj liczbe zlaczy PCI ");
+	p.PCIzajete = p.Wprowadzanie_inta("Podaj liczbe zajetych zlacz PCI ");
+	o >> p.soket;
+	for (int i = 0; i < p.PCIzajete; i++) {
+		p.dzialka();
+		o >> p.karty[i];
+	}
+	for (int i = 0; i < p.szynyZajete; i++) {
+		p.dzialka();
+		o >> p.RAM[i];
+	}
+	return o;
+}
+
 //METODY
+
+int PlytaStacjonarna::Wprowadzanie_inta(string zapytanie)
+{
+	int wartosc;
+	bool blad = true;
+	string znaki;
+	while (blad)
+	{
+		cout << zapytanie << endl;
+		cin >> znaki;
+		blad = false;
+		for (int i = 0; i < znaki.length(); i++)
+		{
+			if (znaki[i] < '0' || znaki[i]>'9')
+				blad = true;
+			else
+				continue;
+		}
+	}
+	istringstream iss(znaki);
+	iss >> wartosc;
+	return wartosc;
+}
 
 Producent PlytaStacjonarna::losuj() {
 	int a = (rand() % 3 + 1);

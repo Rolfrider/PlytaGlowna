@@ -1,5 +1,9 @@
 #pragma once
 #include<string>
+#include<iostream>
+#include<sstream>
+//#include"Poprawnosc.h"
+
 using namespace std;
 class Soket
 {
@@ -18,6 +22,8 @@ public:
 	friend ostream& operator<<(ostream &o, Soket &s);
 	friend istream& operator >> (istream &o, Soket &p);
 private:
+	float Wprowadzenie_float(string zapytanie);
+	int Wprowadzenie_inta(string zapytanie);
 	int rodzaj;
 	int liczbaRdzeni;
 	float taktowanie;

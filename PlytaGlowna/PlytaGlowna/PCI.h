@@ -2,6 +2,9 @@
 #include<string>
 #include<ctime>
 #include <cstdlib>
+#include<iostream>
+#include<sstream>
+//#include"Poprawnosc.h"
 using namespace std;
 class PCI
 {
@@ -13,6 +16,7 @@ public:
 	string losujRodzaj();
 	string losujProducenta();
 private:
+	int Wprowadzanie_inta(string zapytanie);
 	string rodzaj;
 	string producent;
 	int pamienc;
