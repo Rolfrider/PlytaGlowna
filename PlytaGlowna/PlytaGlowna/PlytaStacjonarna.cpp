@@ -29,11 +29,13 @@ PlytaStacjonarna::PlytaStacjonarna()
 		}
 	
 	}
-	if (wejsciaPCI >= PCIzajete)
-		karty = new PCI[PCIzajete];
-	else {
-		karty = nullptr;
-		PCIzajete = 0;
+	if (wejsciaPCI != 0)
+	{
+		for (int i = 0; i < PCIzajete; i++)
+		{
+			karty.push_back(PCI());
+		}
+
 	}
 }
 
@@ -50,35 +52,28 @@ PlytaStacjonarna::PlytaStacjonarna(int iloscSzyn, int szynyZajete, int wejsciaPC
 		}
 
 	}
-		if (wejsciaPCI >= PCIzajete)
-			karty = new PCI[PCIzajete];
-		else {
-			karty = NULL;
-			PCIzajete = 0;
+	if (wejsciaPCI != 0)
+	{
+		for (int i = 0; i < PCIzajete; i++)
+		{
+			karty.push_back(PCI());
 		}
+
+	}
 
 
 }
 
 PlytaStacjonarna::PlytaStacjonarna(PlytaStacjonarna &p) { // konstruktor kopiuj¹cy 
 	DEBUG("Tworze plyte glowna")
-		iloscPlyt++;
+	iloscPlyt++;
 	marka = p.marka;
 	iloscSzyn = p.iloscSzyn;
 	wejsciaPCI = p.wejsciaPCI;
 	szynyZajete = p.szynyZajete;
 	PCIzajete = p.PCIzajete;
-	p.RAM = RAM;
-
-	if (p.karty != NULL) {
-		karty = new PCI[PCIzajete];
-		for (int i = 0; i < PCIzajete; i++) {
-			karty[i] = p.karty[i];
-		}
-	}
-	else
-		karty = nullptr;
-
+	RAM = p.RAM;
+	karty = p.karty;
 }
 // OPERATORY
 bool PlytaStacjonarna::operator==(PlytaStacjonarna &p) {
@@ -124,20 +119,13 @@ PCI& PlytaStacjonarna::operator[](const int i) {
 	}
 }
 
-PlytaStacjonarna& PlytaStacjonarna::operator=( PlytaStacjonarna p) {
+PlytaStacjonarna& PlytaStacjonarna::operator=(const PlytaStacjonarna &p) {
 	iloscSzyn = p.iloscSzyn;
 	wejsciaPCI = p.wejsciaPCI;
 	szynyZajete = p.szynyZajete;
 	PCIzajete = p.PCIzajete;
-	RAM.reserve(iloscSzyn);
-	delete[]karty;
-	
-	RAM.swap(p.RAM);
-
-	karty = new PCI[PCIzajete];
-	for (int i = 0; i < PCIzajete; i++) {
-		karty[i] = p.karty[i];
-	}
+	RAM = p.RAM;
+	karty = p.karty;
 
 
 	return *this;
@@ -146,25 +134,16 @@ PlytaStacjonarna& PlytaStacjonarna::operator=( PlytaStacjonarna p) {
 
 PlytaStacjonarna& PlytaStacjonarna::operator++() { //Dodaje RAM jesli to mozliwe
 	cout << "Procedura dodania nowej kosci RAM" << endl;
-	if (RAM.size() != 0) 
-	{
-		szynyZajete++;
-		if (iloscSzyn >= szynyZajete) {
+		
+		if (iloscSzyn > szynyZajete)
+		{
 			RAM.push_back(SzynaPamieci());
+			szynyZajete++;
 		}
 		else 
-			cout << "Nie mozna dodac, wsszystkie szyny pamieci zajete" << endl;
-
-	}
-	else
-	{
-		szynyZajete++;
-		if (iloscSzyn >= szynyZajete)
-			RAM.push_back(SzynaPamieci());
-		else 
-			cout << "Nie mozna dodac, wsszystkie szyny pamieci zajete" << endl;
-
-	}
+			cout << "Nie mozna dodac, wszystkie szyny pamieci zajete" << endl;
+		
+	
 	return *this;
 }
 
@@ -172,91 +151,42 @@ PlytaStacjonarna& PlytaStacjonarna::operator--() { //Odejmowanie RAM jesli to mo
 	cout << "Procedura  odejmowania kosci RAM" << endl;
 	if (RAM.size() != 0)
 	{
+		RAM.pop_back();
 		szynyZajete--;
-		if (szynyZajete > 0)
-			RAM.pop_back();
-		else 
-			cout << "Nie mozna odjac RAMU" << endl;
-		
 	}
+	else 
+		cout << "Nie mozna odjac RAMU" << endl;
+		
+	
 
 	return *this;
 }
 
 PlytaStacjonarna PlytaStacjonarna::operator++(int) {//Dodaje karte rozszerzen
-	cout << "Procedura dodania nowej karty rozszerzeñ" << endl;
+	cout << "Procedura dodania nowej karty rozszerzen" << endl;
 	PlytaStacjonarna kopia = *this;
-	if (karty != NULL) {
-		PCI *kart1 = new PCI[PCIzajete];
-		for (int i = 0; i < PCIzajete; i++) {
-			kart1[i] = karty[i];
-		}
+	if ((szynyZajete < iloscSzyn) && (karty.max_size() > karty.size()))
+	{
+		karty.push_back(PCI());
 		PCIzajete++;
-		if (wejsciaPCI >= PCIzajete) {
-			karty = new PCI[PCIzajete];
-			for (int i = 0; i < PCIzajete - 1; i++) {
-				karty[i] = kart1[i];
-			}
-		}
-
-		else {
-			PCIzajete--;
-			for (int i = 0; i < PCIzajete; i++) {
-				karty[i] = kart1[i];
-			}
-			cout << "Nie mozna dodac, wsszystkie zlacza  PCI zajete" << endl;
-
-		}
-		delete[]kart1;
 	}
-	else {
-		PCIzajete++;
-		if (wejsciaPCI >= PCIzajete)
-			karty = new PCI[PCIzajete];
-		else {
-			PCIzajete--;
-			karty = new PCI[PCIzajete];
-		}
-	}
+	else
+		cout << "Nie mo¿na dodaæ ju¿ kart rozszerzen" << endl;
+
 	return kopia;
 
 }
 
 PlytaStacjonarna PlytaStacjonarna::operator--(int) {//Odejmuje karte rozszerzen
-	cout << "Procedura odejmowania karty rozszerzeñ" << endl;
+	cout << "Procedura odejmowania karty rozszerzen" << endl;
 	PlytaStacjonarna kopia = *this;
-	if (karty != NULL) {
-		PCI *kart1 = new PCI[PCIzajete];
-		for (int i = 0; i < PCIzajete; i++) {
-			kart1[i] = karty[i];
-		}
+	if (karty.size() != 0)
+	{
+		karty.pop_back();
 		PCIzajete--;
-		if (PCIzajete > 0) {
-			karty = new PCI[PCIzajete];
-			for (int i = 0; i < PCIzajete; i++) {
-				karty[i] = kart1[i];
-			}
-		}
-		else {
-			PCIzajete++;
-			for (int i = 0; i < PCIzajete; i++) {
-				karty[i] = kart1[i];
-			}
-			cout << "Nie mozna odjac karty rozszerzen" << endl;
-		}
-		delete[]kart1;
 	}
-	else {
-		PCIzajete--;
-		if (PCIzajete > 0)
-			karty = new PCI[PCIzajete];
-		else if (PCIzajete == 0)
-			cout << "Nie ma zadnych kart rozszerzen" << endl;
-		else {
-			PCIzajete++;
-			karty = new PCI[PCIzajete];
-		}
-	}
+	else
+		cout << "Nie ma karty do usuniecia" << endl;
 	return kopia;
 
 }
@@ -346,7 +276,5 @@ int PlytaStacjonarna::ZwrocLiczbePlyt() {
 
 PlytaStacjonarna::~PlytaStacjonarna()
 {
-	if (karty != NULL)
-		delete[]karty;
 	DEBUG("Niszcze plyte glowna")
 }
