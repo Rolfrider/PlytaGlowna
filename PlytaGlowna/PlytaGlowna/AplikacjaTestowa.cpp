@@ -10,7 +10,11 @@
 
 int main()
 {
-	srand(time(NULL));
+	PCI p;
+	cout << p;
+	cin >> p;
+	cout << p;
+	/*srand(time(NULL));
 	cout << "askjdddddddddddddd";
 	PlytaStacjonarna p;
 	cout << "xD";
@@ -27,7 +31,7 @@ int main()
 	cout << p << endl;
 	p1 = p;
 	cout << p1 << endl;
-	cout << p << endl;
+	cout << p << endl;*/
     return 0;
 }
 

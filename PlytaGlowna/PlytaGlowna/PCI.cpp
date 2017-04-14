@@ -23,6 +23,18 @@ ostream& operator<<(ostream &o, PCI &p) {
 	o << "Pamiec urzadzenia " << p.pamienc << " GB" << endl;
 	return o;
 }
+
+istream& operator>>(istream &o, PCI &p) {
+	
+	cout << "Podaj rodzaj karty rozszerzen :" << endl;
+	o >> p.rodzaj;
+	p.rodzaj = " Karta " + p.rodzaj;
+	cout << "Podaj producenta karty rozszerzen :" << endl;
+	o >> p.producent;
+	cout << "Podaj liczbe GB pamieci karty rozszerzen :" << endl;
+	o >> p.pamienc;
+	return o;
+}
 //metody
 string PCI::losujRodzaj() {
 	

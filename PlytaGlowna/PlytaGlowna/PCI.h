@@ -9,6 +9,7 @@ public:
 	PCI();
 	~PCI();
 	friend ostream& operator<<(ostream &o, PCI &p);
+	friend istream& operator>>(istream &o, PCI &p);
 	string losujRodzaj();
 	string losujProducenta();
 private:

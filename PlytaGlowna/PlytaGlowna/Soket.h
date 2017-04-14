@@ -16,6 +16,7 @@ public:
 
 	bool operator==(Soket &soket);
 	friend ostream& operator<<(ostream &o, Soket &s);
+	friend istream& operator >> (istream &o, Soket &p);
 private:
 	int rodzaj;
 	int liczbaRdzeni;

@@ -7,6 +7,7 @@
 #define DEBUG(x) cout<<x<<endl;
 #endif // _DEBUG
 
+// KONSTRUKTORY
 Soket::Soket()
 {
 	DEBUG("Tworze soket")
@@ -22,19 +23,25 @@ Soket::Soket(int rodzaj, int liczbaRdzeni, float taktowanie, int pamiecCache) {
 	this->taktowanie=taktowanie;
 	this->pamiecCache=pamiecCache;
 }
-void Soket::Spec() {
-	cout << "Dane procesora:" << endl;
-	cout << "Liczba Rdzeni : " << pokazLiczbeRdzenie() << endl;
-	cout << "Taktowanie Kazdego Rdzeniea : " << pokazTaktowanie() << " GHz" << endl;
-	cout << "Gniazdo Procesora : " << pokazRodzaj() << endl;
-	cout << "Pamiec Cache : " << pokazPamiec() << " MB" << endl;
-}
+// OPERATORY
 ostream& operator<<(ostream &o, Soket &s) {
 	o << "Dane procesora:" << endl;
 	o << "Liczba Rdzeni : " << s.liczbaRdzeni << endl;
 	o << "Taktowanie Kazdego Rdzeniea : " << s.taktowanie << " GHz" << endl;
 	o << "Gniazdo Procesora : " << s.rodzaj << endl;
 	o << "Pamiec Cache : " << s.pamiecCache << " MB" << endl;
+	return o;
+}
+istream& operator >> (istream &o, Soket &p) {
+
+	cout << "Podaj nr. gniazda procesora :" << endl;
+	o >> p.rodzaj;
+	cout << "Podaj liczbe rdzeni procesora :" << endl;
+	o >> p.liczbaRdzeni;
+	cout << "Podaj taktowanie w GHz procesora :" << endl;
+	o >> p.taktowanie;
+	cout << "Podaj liczbe MB pamieci Cache procesora :" << endl;
+	o >> p.pamiecCache;
 	return o;
 }
 bool Soket::operator==(Soket &soket) {
@@ -46,6 +53,14 @@ bool Soket::operator==(Soket &soket) {
 		cout << "Nie mozna wymienic, zle gniazdo procesora" << endl;
 		return false;
 	}
+}
+// METODY
+void Soket::Spec() {
+	cout << "Dane procesora:" << endl;
+	cout << "Liczba Rdzeni : " << pokazLiczbeRdzenie() << endl;
+	cout << "Taktowanie Kazdego Rdzeniea : " << pokazTaktowanie() << " GHz" << endl;
+	cout << "Gniazdo Procesora : " << pokazRodzaj() << endl;
+	cout << "Pamiec Cache : " << pokazPamiec() << " MB" << endl;
 }
 int Soket::pokazRodzaj() {
 	return rodzaj;
