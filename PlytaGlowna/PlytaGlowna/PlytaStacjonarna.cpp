@@ -13,6 +13,9 @@ PlytaStacjonarna::PlytaStacjonarna()
 {
 	DEBUG("Tworze plyte glowna")
 
+	szerokosc = 305;
+	dlugosc = 244;
+	waga = 222.1;
 	marka = losuj();
 	iloscPlyt++;
 	iloscSzyn = (rand() % 6 + 1);
@@ -41,6 +44,9 @@ PlytaStacjonarna::PlytaStacjonarna()
 
 PlytaStacjonarna::PlytaStacjonarna(int iloscSzyn, int szynyZajete, int wejsciaPCI, int PCIzajete) :
 	iloscSzyn(iloscSzyn), szynyZajete(szynyZajete), wejsciaPCI(wejsciaPCI), PCIzajete(PCIzajete) {
+	szerokosc = 305;
+	dlugosc = 244;
+	waga = 222.1;
 	marka = losuj();
 	iloscPlyt++;
 	RAM.reserve(iloscSzyn);// Rezerwuje nam miejsce na max tyle elementów ile jest szyn
@@ -193,6 +199,8 @@ PlytaStacjonarna PlytaStacjonarna::operator--(int) {//Odejmuje karte rozszerzen
 
 ostream& operator << (ostream &s, PlytaStacjonarna &p) {
 	s << "Producent : " << p.marka << endl;
+	s << "Wymiar w mm : " << p.szerokosc << " x "<< p.dlugosc << endl;
+	s << "Waga : " << p.waga << " gram"  << endl;
 	s << "Dostepne szyny pamieci: " << p.iloscSzyn;
 	s << " Zajete szyny pamieci : " << p.szynyZajete << endl;
 	s << "Dostepne zlacza PCI: " << p.wejsciaPCI;
