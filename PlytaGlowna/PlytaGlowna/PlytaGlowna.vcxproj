@@ -142,6 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PCI.h" />
+    <ClInclude Include="PlytaGamingowa.h" />
     <ClInclude Include="PlytaGlowna.h" />
     <ClInclude Include="PlytaMobilna.h" />
     <ClInclude Include="PlytaStacjonarna.h" />
@@ -154,6 +155,7 @@
   <ItemGroup>
     <ClCompile Include="AplikacjaTestowa.cpp" />
     <ClCompile Include="PCI.cpp" />
+    <ClCompile Include="PlytaGamingowa.cpp" />
     <ClCompile Include="PlytaGlowna.cpp" />
     <ClCompile Include="PlytaMobilna.cpp" />
     <ClCompile Include="PlytaStacjonarna.cpp" />
