@@ -13,6 +13,7 @@ class SzynaPamieci
 {
 public:
 	SzynaPamieci();
+	SzynaPamieci(Pojemnosc poj, Taktowanie tak);
 	SzynaPamieci(bool mobilna);
 	~SzynaPamieci();
 	void PrzetaktujGora(SzynaPamieci &ram);

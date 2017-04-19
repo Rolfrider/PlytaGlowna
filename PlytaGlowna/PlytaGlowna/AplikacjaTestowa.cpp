@@ -5,15 +5,15 @@
 #include "PlytaGlowna.h"
 #include"PlytaStacjonarna.h"
 #include"PlytaMobilna.h"
+#include "PlytaGamingowa.h"
 #include<iostream>
 
 int main()
 {
 
 	srand(time(NULL));
-	PlytaMobilna p;
-	cin >> p;
-	cout << p;
+	PlytaGamingowa p;
+	
     return 0;
 }
 
