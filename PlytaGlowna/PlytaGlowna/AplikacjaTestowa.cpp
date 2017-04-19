@@ -4,13 +4,14 @@
 #include "stdafx.h"
 #include "PlytaGlowna.h"
 #include"PlytaStacjonarna.h"
+#include"PlytaMobilna.h"
 #include<iostream>
 
 int main()
 {
 
 	srand(time(NULL));
-	PlytaStacjonarna p;
+	PlytaMobilna p;
 	cin >> p;
 	cout << p;
     return 0;

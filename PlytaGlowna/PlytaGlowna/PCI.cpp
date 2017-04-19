@@ -16,22 +16,52 @@ PCI::PCI()
 	producent = losujProducenta();
 	pamienc = rand()%6+1;
 }
+PCI::PCI(bool mobilna):
+	rodzaj("karta graficzna"), producent("Qualcomm"), pamienc(2), mobilna(true)
+{
+	DEBUG("Tworze nowe zlocze PCI")
+}
+PCI::PCI(string rodzaj, string producent, int pamienc, bool mobilna)
+{
+	this->rodzaj = rodzaj;
+	this->producent = producent;
+	this->pamienc = pamienc;
+	this->mobilna = mobilna;
+	DEBUG("Tworze nowe zlocze PCI")
+}
 //operatory
 ostream& operator<<(ostream &o, PCI &p) {
 	o << p.rodzaj << endl;
 	o << "Producent : " << p.producent << endl;
-	o << "Pamiec urzadzenia " << p.pamienc << " GB" << endl;
+	if(p.mobilna == true)
+		o << "Pamiec urzadzenia " << p.pamienc << "MB" << endl;
+	else
+		o << "Pamiec urzadzenia " << p.pamienc << " GB" << endl;
 	return o;
 }
 
 istream& operator>>(istream &o, PCI &p) {
-	
-	cout << "Podaj rodzaj karty rozszerzen :" << endl;
-	cin >> p.rodzaj;
-	p.rodzaj = " Karta " + p.rodzaj;
-	cout << "Podaj producenta karty rozszerzen :" << endl;
-	o >> p.producent;
-	p.pamienc = p.Wprowadzanie_inta("Podaj liczbe GB pamieci karty rozszerzen :") ;
+	if (p.mobilna == true)
+	{
+		if (p.rodzaj == "karta graficzna")
+		{
+			return o;
+		}
+		else {
+			cout << "Podaj nazwe rozszerzenia(np. Zyroskop, Wifi itp) :" << endl;
+			o >> p.rodzaj;
+			cout << "Podaj producent rozszerzenia :" << endl;
+			o >> p.producent;
+			p.pamienc = p.Wprowadzanie_inta("Podaj liczbe Mb pamieci  rozszerzenia :");
+		}
+	}else {
+		cout << "Podaj rodzaj karty rozszerzen :" << endl;
+		o >> p.rodzaj;
+		p.rodzaj = " Karta " + p.rodzaj;
+		cout << "Podaj producenta karty rozszerzen :" << endl;
+		o >> p.producent;
+		p.pamienc = p.Wprowadzanie_inta("Podaj liczbe GB pamieci karty rozszerzen :");
+	}
 	return o;
 }
 //metody

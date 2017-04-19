@@ -36,7 +36,6 @@ public:
 	PlytaStacjonarna& operator^(const int a);
 
 protected:
-	int Wprowadzanie_inta(string zapytanie);
 	static int iloscPlyt;
 	Producent marka;
 	Soket soket;

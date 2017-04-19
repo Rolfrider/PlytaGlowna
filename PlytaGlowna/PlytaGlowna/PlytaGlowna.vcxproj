@@ -143,6 +143,7 @@
   <ItemGroup>
     <ClInclude Include="PCI.h" />
     <ClInclude Include="PlytaGlowna.h" />
+    <ClInclude Include="PlytaMobilna.h" />
     <ClInclude Include="PlytaStacjonarna.h" />
     <ClInclude Include="Poprawnosc.h" />
     <ClInclude Include="Soket.h" />
@@ -154,6 +155,7 @@
     <ClCompile Include="AplikacjaTestowa.cpp" />
     <ClCompile Include="PCI.cpp" />
     <ClCompile Include="PlytaGlowna.cpp" />
+    <ClCompile Include="PlytaMobilna.cpp" />
     <ClCompile Include="PlytaStacjonarna.cpp" />
     <ClCompile Include="Soket.cpp" />
     <ClCompile Include="stdafx.cpp">
