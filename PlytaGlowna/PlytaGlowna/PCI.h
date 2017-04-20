@@ -10,6 +10,8 @@ class PCI
 {
 public:
 	PCI();
+	PCI(bool mobilna);
+	PCI(string rodzaj, string producent, int pamienc, bool mobilna= false);
 	~PCI();
 	friend ostream& operator<<(ostream &o, PCI &p);
 	friend istream& operator>>(istream &o, PCI &p);
@@ -20,6 +22,7 @@ private:
 	string rodzaj;
 	string producent;
 	int pamienc;
+	bool mobilna = false;
 
 };
 

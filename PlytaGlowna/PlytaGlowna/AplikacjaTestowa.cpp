@@ -4,15 +4,17 @@
 #include "stdafx.h"
 #include "PlytaGlowna.h"
 #include"PlytaStacjonarna.h"
+#include"PlytaMobilna.h"
+#include "PlytaGamingowa.h"
 #include<iostream>
 
 int main()
 {
 
 	srand(time(NULL));
-	PlytaStacjonarna p;
-	cin >> p;
+	PlytaGamingowa p;
 	cout << p;
+	
     return 0;
 }
 

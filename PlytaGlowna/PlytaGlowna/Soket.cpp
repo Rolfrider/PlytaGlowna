@@ -17,11 +17,28 @@ Soket::Soket()
 	pamiecCache = 6;
 
 }
-Soket::Soket(int rodzaj, int liczbaRdzeni, float taktowanie, int pamiecCache) {
+Soket::Soket(int rodzaj, int liczbaRdzeni, float taktowanie, int pamiecCache, bool mobilna) {
 	this->rodzaj=rodzaj;
 	this->liczbaRdzeni=liczbaRdzeni;
 	this->taktowanie=taktowanie;
 	this->pamiecCache=pamiecCache;
+	if (mobilna == true)
+	{
+		zintegrowanaKartaGraficzna = new PCI(mobilna);
+	}
+}
+Soket::Soket(Soket &s) {
+	rodzaj = s.rodzaj;
+	liczbaRdzeni = s.liczbaRdzeni;
+	taktowanie = s.taktowanie;
+	pamiecCache = s.pamiecCache;
+	if (s.zintegrowanaKartaGraficzna != nullptr)
+	{
+		delete zintegrowanaKartaGraficzna;
+		zintegrowanaKartaGraficzna = new PCI(s.zintegrowanaKartaGraficzna);
+	}
+	else
+		zintegrowanaKartaGraficzna = nullptr;
 }
 // OPERATORY
 ostream& operator<<(ostream &o, Soket &s) {
@@ -30,6 +47,11 @@ ostream& operator<<(ostream &o, Soket &s) {
 	o << "Taktowanie Kazdego Rdzeniea : " << s.taktowanie << " GHz" << endl;
 	o << "Gniazdo Procesora : " << s.rodzaj << endl;
 	o << "Pamiec Cache : " << s.pamiecCache << " MB" << endl;
+	if (s.zintegrowanaKartaGraficzna != nullptr)
+	{
+		o << "Zintegrowana karta graficzna" << endl;
+		o << *s.zintegrowanaKartaGraficzna << endl;
+	}
 	return o;
 }
 istream& operator >> (istream &o,Soket &p) {
@@ -37,6 +59,10 @@ istream& operator >> (istream &o,Soket &p) {
 	p.liczbaRdzeni = p.Wprowadzenie_inta("Podaj liczbe rdzeni procesora :");
 	p.taktowanie = p.Wprowadzenie_float("Podaj taktowanie w GHz procesora :");
 	p.pamiecCache= p.Wprowadzenie_inta("Podaj liczbe MB pamieci Cache procesora :");
+	if (p.zintegrowanaKartaGraficzna != nullptr)
+	{
+		o >> *p.zintegrowanaKartaGraficzna;
+	}
 	return o;
 }
 bool Soket::operator==(Soket &soket) {
@@ -48,6 +74,22 @@ bool Soket::operator==(Soket &soket) {
 		cout << "Nie mozna wymienic, zle gniazdo procesora" << endl;
 		return false;
 	}
+}
+Soket& Soket::operator= (const Soket &s) 
+{
+	rodzaj = s.rodzaj;
+	liczbaRdzeni = s.liczbaRdzeni;
+	taktowanie = s.taktowanie;
+	pamiecCache = s.pamiecCache;
+	if (s.zintegrowanaKartaGraficzna != nullptr)
+	{
+		delete zintegrowanaKartaGraficzna;
+		zintegrowanaKartaGraficzna = new PCI(s.zintegrowanaKartaGraficzna);
+	}
+	else
+		zintegrowanaKartaGraficzna = nullptr;
+
+	return *this;
 }
 // METODY
 float Soket::Wprowadzenie_float(string zapytanie)
@@ -119,8 +161,9 @@ void Soket::podkrecProcka() {
 }
 Soket::~Soket()
 {
-
 	DEBUG("Niszcze soket")
+	if (zintegrowanaKartaGraficzna != nullptr)
+		delete zintegrowanaKartaGraficzna;
 
 	
 }

@@ -9,15 +9,27 @@
 #define DEBUG(x) cout<<x<<endl;
 #endif // _DEBUG
 
-Taktowanie SzynaPamieci::taktowanie = losujTaktowanie();
+
 
 //konstruktory
 SzynaPamieci::SzynaPamieci()
 {
 	DEBUG("Tworze szyne pamieci")
 
+	taktowanie = losujTaktowanie();
 	producent = "RASUS";
 	pojemnosc = losujPojemnosc();
+}
+SzynaPamieci::SzynaPamieci(Pojemnosc poj, Taktowanie tak)
+{
+	producent = "RASUS";
+	taktowanie = tak;
+	pojemnosc = poj;
+}
+SzynaPamieci::SzynaPamieci(bool mobilna) :
+	taktowanie(Niskie), pojemnosc(Mobilna), producent("MobileMem")
+{
+	DEBUG("Tworze szyne pamieci")
 }
 //operatory
 ostream& operator<<(ostream &o, SzynaPamieci &s) {
