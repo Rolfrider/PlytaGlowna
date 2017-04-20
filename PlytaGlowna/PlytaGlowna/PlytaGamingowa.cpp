@@ -12,16 +12,16 @@ PlytaGamingowa::PlytaGamingowa()
 	szerokosc = 305;
 	dlugosc = 244;
 	waga = 222.1;
-	marka = losuj();
 	iloscPlyt++;
 	iloscSzyn = 4;
 	wejsciaPCI = 3;
 	szynyZajete = 2;
 	PCIzajete = 2;
+	karty.clear();
+	RAM.clear();
 	RAM.reserve(iloscSzyn);// Rezerwuje nam miejsce na max tyle elementów ile jest szyn
 	if (iloscSzyn != 0)
 	{
-		RAM.pop_back();
 		for (int i = 0; i < szynyZajete; i++)
 		{
 			RAM.push_back(SzynaPamieci(Duza, Wysokie));
@@ -65,6 +65,24 @@ ostream& operator << (ostream &s, PlytaGamingowa &p) {
 	return s;
 }
 
+istream& operator >> (istream &o, PlytaGamingowa &p) {
+	cout << "Podaj nazwe producenta plyty :" << endl;
+	o >> p.marka;
+	p.iloscSzyn = p.Wprowadzanie_inta("Podaj liczbe szyn pamieci ");
+	p.szynyZajete = p.Wprowadzanie_inta("Podaj liczbe zajetych szyn pamieci ");
+	p.wejsciaPCI = p.Wprowadzanie_inta("Podaj liczbe zlaczy PCI ");
+	p.PCIzajete = p.Wprowadzanie_inta("Podaj liczbe zajetych zlacz PCI ");
+	o >> p.soket;
+	for (int i = 0; i < p.PCIzajete; i++) {
+		p.dzialka();
+		o >> p.karty[i];
+	}
+	for (int i = 0; i < p.szynyZajete; i++) {
+		p.dzialka();
+		o >> p.RAM[i];
+	}
+	return o;
+}
 PlytaGamingowa::~PlytaGamingowa()
 {
 }
