@@ -13,6 +13,7 @@ int main()
 
 	srand(time(NULL));
 	PlytaGamingowa p;
+	cout << p;
 	
     return 0;
 }

@@ -13,5 +13,7 @@ class PlytaGamingowa :
 public:
 	PlytaGamingowa();
 	~PlytaGamingowa();
+	friend ostream& operator<< (ostream &s, PlytaGamingowa &p);
+	friend istream& operator >> (istream &o, PlytaGamingowa &p);
 };
 
