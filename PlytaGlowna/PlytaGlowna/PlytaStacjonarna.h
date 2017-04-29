@@ -21,7 +21,9 @@ public:
 	void WymienProcka();
 	void dzialka();
 	static int ZwrocLiczbePlyt();
-
+	void wypiszDane();
+	void wpiszDane();
+	void stan();
 
 	friend ostream& operator<< (ostream &s, PlytaStacjonarna &p);
 	friend istream& operator >> (istream &o, PlytaStacjonarna &p);

@@ -15,5 +15,8 @@ protected:
 public:
 	PlytaGlowna();
 	virtual ~PlytaGlowna();
+	virtual void wypiszDane() = 0;
+	virtual void wpiszDane() = 0;
+	virtual void stan() = 0;
 };
 

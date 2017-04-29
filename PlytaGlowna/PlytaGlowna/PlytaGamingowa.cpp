@@ -89,6 +89,16 @@ istream& operator >> (istream &o, PlytaGamingowa &p) {
 	}
 	return o;
 }
+
+void PlytaGamingowa::wypiszDane() {
+	cout << *this << endl;;
+}
+void PlytaGamingowa::wpiszDane() {
+	cin >> *this;
+}
+void PlytaGamingowa::stan() {
+	cout << "Gamingowa plyta gotowa do uzytku" << endl;;
+}
 PlytaGamingowa::~PlytaGamingowa()
 {
 }

@@ -239,7 +239,15 @@ istream& operator >> (istream &o, PlytaStacjonarna &p) {
 }
 
 //METODY
-
+void PlytaStacjonarna::wypiszDane(){
+	cout << *this << endl;
+}
+void PlytaStacjonarna::wpiszDane() {
+	cin >> *this;
+}
+void PlytaStacjonarna::stan() {
+	cout << "Stacjonarna plyta gotowa do uzytku" << endl;;
+}
 Producent PlytaStacjonarna::losuj() {
 	int a = (rand() % 3 + 1);
 	switch (a) {

@@ -47,6 +47,15 @@ istream& operator >> (istream &o, PlytaMobilna &p)
 	return o;
 }
 
+void PlytaMobilna::wypiszDane() {
+	cout << *this << endl;
+}
+void PlytaMobilna::wpiszDane() {
+	cin >> *this;
+}
+void PlytaMobilna::stan() {
+	cout << "Mobilna plyta gotowa do uzytku" << endl;;
+}
 PlytaMobilna::~PlytaMobilna()
 {
 }

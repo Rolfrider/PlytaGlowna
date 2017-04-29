@@ -12,9 +12,16 @@ int main()
 {
 
 	srand(time(NULL));
-	PlytaGamingowa p;
-	cin >> p;
-	cout << p;
+	PlytaGlowna *p[3];
+	PlytaGamingowa g;
+	PlytaStacjonarna s;
+	PlytaMobilna m;
+	p[0] = &m;
+	p[0]->stan();
+	p[1] = &s;
+	p[1]->stan();
+	p[2] = &g;
+	p[2]->stan();
 	
     return 0;
 }

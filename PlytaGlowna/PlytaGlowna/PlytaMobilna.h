@@ -23,5 +23,9 @@ public:
 
 	friend ostream& operator<< (ostream &s, PlytaMobilna &p);
 	friend istream& operator >> (istream &o, PlytaMobilna &p);
+
+	void wypiszDane();
+	void wpiszDane();
+	void stan();
 };
 

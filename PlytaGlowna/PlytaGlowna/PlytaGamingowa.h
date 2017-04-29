@@ -15,5 +15,8 @@ public:
 	~PlytaGamingowa();
 	friend ostream& operator<< (ostream &s, PlytaGamingowa &p);
 	friend istream& operator >> (istream &o, PlytaGamingowa &p);
+	void wypiszDane();
+	void wpiszDane();
+	void stan();
 };
 
