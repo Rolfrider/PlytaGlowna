@@ -35,7 +35,6 @@ PlytaGamingowa::PlytaGamingowa()
 		}
 
 		karty.push_back(PCI("Karta graficzna", "Zotac", 8));
-		karty.pop_front();
 	}
 }
 
@@ -67,12 +66,19 @@ ostream& operator << (ostream &s, PlytaGamingowa &p) {
 
 istream& operator >> (istream &o, PlytaGamingowa &p) {
 	cout << "Podaj nazwe producenta plyty :" << endl;
-	o >> p.marka;
+	getline(o, p.marka);
 	p.iloscSzyn = p.Wprowadzanie_inta("Podaj liczbe szyn pamieci ");
 	p.szynyZajete = p.Wprowadzanie_inta("Podaj liczbe zajetych szyn pamieci ");
 	p.wejsciaPCI = p.Wprowadzanie_inta("Podaj liczbe zlaczy PCI ");
 	p.PCIzajete = p.Wprowadzanie_inta("Podaj liczbe zajetych zlacz PCI ");
+	cout << "Podaj cechy szcegolne :" << endl;
+	getline(o, p.cechySzczegolne);
+	cout << "Podaj kolor podœwietlenia RGB :" << endl;
+	getline(o, p.podswietlenieRGB);
+	cout << "Podaj material z ktorego zostala wykonana plyta : " << endl;
+	getline(o, p.material);
 	o >> p.soket;
+	
 	for (int i = 0; i < p.PCIzajete; i++) {
 		p.dzialka();
 		o >> p.karty[i];

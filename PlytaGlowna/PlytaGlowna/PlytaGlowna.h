@@ -11,6 +11,7 @@ protected:
 	float szerokosc;
 	float dlugosc;
 	float waga;
+	void CzyszczenieBufora();
 public:
 	PlytaGlowna();
 	virtual ~PlytaGlowna();

@@ -42,7 +42,7 @@ ostream& operator<<(ostream &o, SzynaPamieci &s) {
 istream& operator >> (istream &o, SzynaPamieci &p) {
 
 	cout << "Podaj producenta ramu :" << endl;
-	cin >> p.producent;
+	getline(o, p.producent);
 	cout << "Wybierz taktowanie ramu :" << endl; 
 	cout << "1. Niskie" << endl;
 	cout << "2. Srednie" << endl;

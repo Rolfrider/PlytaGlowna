@@ -49,17 +49,17 @@ istream& operator>>(istream &o, PCI &p) {
 		}
 		else {
 			cout << "Podaj nazwe rozszerzenia(np. Zyroskop, Wifi itp) :" << endl;
-			o >> p.rodzaj;
+			getline(o, p.rodzaj);
 			cout << "Podaj producent rozszerzenia :" << endl;
-			o >> p.producent;
+			getline(o, p.producent);
 			p.pamienc = p.Wprowadzanie_inta("Podaj liczbe Mb pamieci  rozszerzenia :");
 		}
 	}else {
 		cout << "Podaj rodzaj karty rozszerzen :" << endl;
-		o >> p.rodzaj;
+		getline(o, p.rodzaj);
 		p.rodzaj = " Karta " + p.rodzaj;
 		cout << "Podaj producenta karty rozszerzen :" << endl;
-		o >> p.producent;
+		getline(o, p.producent);
 		p.pamienc = p.Wprowadzanie_inta("Podaj liczbe GB pamieci karty rozszerzen :");
 	}
 	return o;
@@ -73,7 +73,7 @@ int PCI::Wprowadzanie_inta(string zapytanie)
 	while (blad)
 	{
 		cout << zapytanie << endl;
-		cin >> znaki;
+		getline(cin, znaki);
 		blad = false;
 		for (int i = 0; i < znaki.length(); i++)
 		{

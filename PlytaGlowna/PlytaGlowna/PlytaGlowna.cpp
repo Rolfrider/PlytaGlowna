@@ -13,6 +13,10 @@ PlytaGlowna::~PlytaGlowna()
 {
 }
 
+void PlytaGlowna::CzyszczenieBufora() {
+	cin.clear();
+	cin.sync();
+}
 int PlytaGlowna::Wprowadzanie_inta(string zapytanie)
 {
 	int wartosc;
@@ -21,7 +25,7 @@ int PlytaGlowna::Wprowadzanie_inta(string zapytanie)
 	while (blad)
 	{
 		cout << zapytanie << endl;
-		cin >> znaki;
+		getline(cin, znaki);
 		blad = false;
 		for (int i = 0; i < znaki.length(); i++)
 		{

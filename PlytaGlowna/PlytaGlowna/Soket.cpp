@@ -100,7 +100,7 @@ float Soket::Wprowadzenie_float(string zapytanie)
 	while (blad)
 	{
 		cout << zapytanie << endl;
-		cin >> znaki;
+		getline(cin, znaki);
 		blad = false;
 		for (int i = 0; i < znaki.length(); i++)
 		{
@@ -123,7 +123,7 @@ int Soket::Wprowadzenie_inta(string zapytanie)
 	while (blad)
 	{
 		cout << zapytanie << endl;
-		cin >> znaki;
+		getline(cin, znaki);
 		blad = false;
 		for (int i = 0; i < znaki.length(); i++)
 		{

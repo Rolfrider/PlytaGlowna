@@ -221,7 +221,7 @@ ostream& operator << (ostream &s, PlytaStacjonarna &p) {
 
 istream& operator >> (istream &o, PlytaStacjonarna &p) {
 	cout << "Podaj nazwe producenta plyty :" << endl;
-	o >> p.marka;
+	getline(o, p.marka);
 	p.iloscSzyn = p.Wprowadzanie_inta("Podaj liczbe szyn pamieci ");
 	p.szynyZajete = p.Wprowadzanie_inta("Podaj liczbe zajetych szyn pamieci ");
 	p.wejsciaPCI = p.Wprowadzanie_inta("Podaj liczbe zlaczy PCI ");
