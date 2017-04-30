@@ -27,6 +27,7 @@ public:
 private:
 	float Wprowadzenie_float(string zapytanie);
 	int Wprowadzenie_inta(string zapytanie);
+	void CzyszczenieBufora();
 	int rodzaj;
 	int liczbaRdzeni;
 	float taktowanie;

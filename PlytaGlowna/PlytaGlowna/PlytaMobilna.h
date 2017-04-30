@@ -27,5 +27,7 @@ public:
 	void wypiszDane();
 	void wpiszDane();
 	void stan();
+	void wpiszDoPliku();
+	void wczytajZPliku();
 };
 

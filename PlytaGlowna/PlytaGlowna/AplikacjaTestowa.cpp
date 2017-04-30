@@ -16,13 +16,8 @@ int main()
 	PlytaGamingowa g;
 	PlytaStacjonarna s;
 	PlytaMobilna m;
-	p[0] = &m;
-	p[0]->stan();
-	p[1] = &s;
-	p[1]->stan();
-	p[2] = &g;
-	p[2]->stan();
-	
+	s.wpiszDoPliku();
+	s.wczytajZPliku();
     return 0;
 }
 

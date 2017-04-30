@@ -19,13 +19,13 @@ PlytaMobilna::PlytaMobilna()
 
 ostream& operator << (ostream &s, PlytaMobilna &p)
 {
-	s << "Producent plyty mobilnej : " << p.marka << endl;
+	cout << "Producent plyty mobilnej : "; s << p.marka << endl;
 	s << p.procesor << endl;
 	s << p.ram << endl;
-	s << "Dodatkowe urzadzenia : " << endl;
+	cout << "Dodatkowe urzadzenia : " << endl;
 	for (int i = 0; i < p.dodatki.size(); i++)
 	{
-		s << "==============================================================" << endl;
+		cout << "==============================================================" << endl;
 		s << p.dodatki[i] << endl;
 		
 	}
@@ -56,6 +56,27 @@ void PlytaMobilna::wpiszDane() {
 void PlytaMobilna::stan() {
 	cout << "Mobilna plyta gotowa do uzytku" << endl;;
 }
+
+void PlytaMobilna::wpiszDoPliku() {
+	fstream plik;
+	plik.open("PlytaMobilna.txt", ios::in);
+	if (plik.good() == true)
+	{
+		plik << *this;
+		plik.close();
+	}
+}
+
+void PlytaMobilna::wczytajZPliku() {
+	fstream plik;
+	plik.open("PlytaMobilna.txt", ios::out);
+	if (plik.good() == true)
+	{
+		plik >> *this;
+		plik.close();
+	}
+}
+
 PlytaMobilna::~PlytaMobilna()
 {
 }

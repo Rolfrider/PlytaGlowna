@@ -40,16 +40,16 @@ PlytaGamingowa::PlytaGamingowa()
 
 
 ostream& operator << (ostream &s, PlytaGamingowa &p) {
-	s << "Producent : " << p.marka << endl;
-	s << "Wymiar w mm : " << p.szerokosc << " x " << p.dlugosc << endl;
-	s << "Waga : " << p.waga << " gram" << endl;
-	s << "Dostepne szyny pamieci: " << p.iloscSzyn;
-	s << " Zajete szyny pamieci : " << p.szynyZajete << endl;
-	s << "Dostepne zlacza PCI: " << p.wejsciaPCI;
-	s << " Zajete zlacza PCI: " << p.PCIzajete << endl;
-	s << "Kolor podswietlenia RGB : " << p.podswietlenieRGB << endl;
-	s << "Cechy szczegolne : " << p.cechySzczegolne << endl;
-	s << "Material z ktorego zostala wykonana plyta : " << p.material << endl;
+	cout << "Producent : "; s << p.marka << endl;
+	cout << "Wymiar w mm : "; s << p.szerokosc; cout << " x "; s << p.dlugosc << endl;
+	cout << "Waga : "; s << p.waga; cout << " gram" << endl;
+	cout << "Dostepne szyny pamieci: "; s << p.iloscSzyn;
+	cout << " Zajete szyny pamieci : "; s << p.szynyZajete << endl;
+	cout << "Dostepne zlacza PCI: "; s << p.wejsciaPCI;
+	cout << " Zajete zlacza PCI: "; s << p.PCIzajete << endl;
+	cout << "Kolor podswietlenia RGB : "; s << p.podswietlenieRGB << endl;
+	cout << "Cechy szczegolne : "; s << p.cechySzczegolne << endl;
+	cout << "Material z ktorego zostala wykonana plyta : "; s << p.material << endl;
 	p.dzialka();
 	s << p.soket;
 	for (int i = 0; i < p.karty.size(); i++) {

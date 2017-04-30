@@ -24,6 +24,8 @@ public:
 	void wypiszDane();
 	void wpiszDane();
 	void stan();
+	void wpiszDoPliku();
+	void wczytajZPliku();
 
 	friend ostream& operator<< (ostream &s, PlytaStacjonarna &p);
 	friend istream& operator >> (istream &o, PlytaStacjonarna &p);

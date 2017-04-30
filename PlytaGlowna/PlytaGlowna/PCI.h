@@ -18,6 +18,7 @@ public:
 	string losujRodzaj();
 	string losujProducenta();
 private:
+	void CzyszczenieBufora();
 	int Wprowadzanie_inta(string zapytanie);
 	string rodzaj;
 	string producent;

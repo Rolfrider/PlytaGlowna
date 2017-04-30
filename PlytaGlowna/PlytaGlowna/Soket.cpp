@@ -42,23 +42,47 @@ Soket::Soket(Soket &s) {
 }
 // OPERATORY
 ostream& operator<<(ostream &o, Soket &s) {
-	o << "Dane procesora:" << endl;
-	o << "Liczba Rdzeni : " << s.liczbaRdzeni << endl;
-	o << "Taktowanie Kazdego Rdzeniea : " << s.taktowanie << " GHz" << endl;
-	o << "Gniazdo Procesora : " << s.rodzaj << endl;
-	o << "Pamiec Cache : " << s.pamiecCache << " MB" << endl;
+	cout << "Dane procesora:" << endl;
+	cout << "Liczba Rdzeni : "; o << s.liczbaRdzeni << endl;
+	cout << "Taktowanie Kazdego Rdzeniea : "; o << s.taktowanie << " GHz" << endl;
+	cout << "Gniazdo Procesora : "; o << s.rodzaj << endl;
+	cout << "Pamiec Cache : "; o << s.pamiecCache; cout << " MB" << endl;
 	if (s.zintegrowanaKartaGraficzna != nullptr)
 	{
-		o << "Zintegrowana karta graficzna" << endl;
+		cout << "Zintegrowana karta graficzna" << endl;
 		o << *s.zintegrowanaKartaGraficzna << endl;
 	}
 	return o;
 }
 istream& operator >> (istream &o,Soket &p) {
-	p.rodzaj = p.Wprowadzenie_inta("Podaj nr. id gniazda procesora ");
-	p.liczbaRdzeni = p.Wprowadzenie_inta("Podaj liczbe rdzeni procesora :");
-	p.taktowanie = p.Wprowadzenie_float("Podaj taktowanie w GHz procesora :");
-	p.pamiecCache= p.Wprowadzenie_inta("Podaj liczbe MB pamieci Cache procesora :");
+	while (p.rodzaj > 0)
+	{
+		cout << "Podaj nr. id gniazda procesora" << endl;
+		o >> p.rodzaj;
+		p.CzyszczenieBufora();
+	}
+	while (p.liczbaRdzeni > 0)
+	{
+		cout << "Podaj liczbe rdzeni procesora" << endl;
+		o >> p.liczbaRdzeni;
+		p.CzyszczenieBufora();
+	}
+	while (p.taktowanie > 0)
+	{
+		cout << "Podaj taktowanie w GHz procesora" << endl;
+		o >> p.taktowanie;
+		p.CzyszczenieBufora();
+	}
+	while (p.pamiecCache > 0)
+	{
+		cout << "Podaj liczbe MB pamieci Cache procesora" << endl;
+		o >> p.pamiecCache;
+		p.CzyszczenieBufora();
+	}
+	//p.rodzaj = p.Wprowadzenie_inta("Podaj nr. id gniazda procesora ");
+	//p.liczbaRdzeni = p.Wprowadzenie_inta("Podaj liczbe rdzeni procesora :");
+	//p.taktowanie = p.Wprowadzenie_float("Podaj taktowanie w GHz procesora :");
+//	p.pamiecCache= p.Wprowadzenie_inta("Podaj liczbe MB pamieci Cache procesora :");
 	if (p.zintegrowanaKartaGraficzna != nullptr)
 	{
 		o >> *p.zintegrowanaKartaGraficzna;
@@ -92,6 +116,11 @@ Soket& Soket::operator= (const Soket &s)
 	return *this;
 }
 // METODY
+void Soket::CzyszczenieBufora() {
+	cin.clear();
+	cin.sync();
+}
+
 float Soket::Wprowadzenie_float(string zapytanie)
 {
 	float wartosc;
