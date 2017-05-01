@@ -1,13 +1,24 @@
  MSC 
-305244
-222.131
-41
 4
-3.5 GHz
+3
+2
+2
+4
+3.5
 2011
-6 Karta graficzna 
-Minibajt
+6
+ Karta dzwiekowa 
+Turbo
 1
+ Karta sieciowa 
+Turbo
+6
+RASUS
+1866
+8
 RASUS
 2133
-16
+4
+RASUS
+1866
+8

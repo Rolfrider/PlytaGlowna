@@ -34,10 +34,10 @@ ostream& operator<<(ostream &o, PCI &p) {
 	o << p.rodzaj << endl;
 	cout << "Producent : "; o << p.producent << endl;
 	if (p.mobilna == true) {
-		cout << "Pamiec urzadzenia "; o << p.pamienc; cout << "MB" << endl;
+		cout << "Pamiec urzadzenia "; o << p.pamienc; cout << "MB"; o << endl;
 	}
 	else {
-		cout << "Pamiec urzadzenia "; o << p.pamienc; cout << " GB" << endl;
+		cout << "Pamiec urzadzenia "; o << p.pamienc; cout << " GB"; o << endl;
 	}
 	return o;
 }
@@ -51,29 +51,25 @@ istream& operator>>(istream &o, PCI &p) {
 		}
 		else {
 			cout << "Podaj nazwe rozszerzenia(np. Zyroskop, Wifi itp) :" << endl;
+			o.ignore();
 			getline(o, p.rodzaj);
 			cout << "Podaj producent rozszerzenia :" << endl;
 			getline(o, p.producent);
-			while (p.pamienc > 0)
-			{
-				cout << "Podaj liczbe Mb pamieci  rozszerzenia" << endl;
-				o >> p.pamienc;
-				p.CzyszczenieBufora();
-			}
+			cout << "Podaj liczbe Mb pamieci  rozszerzenia" << endl;
+			o >> p.pamienc;
+			
 			//p.pamienc = p.Wprowadzanie_inta("Podaj liczbe Mb pamieci  rozszerzenia :");
 		}
 	}else {
 		cout << "Podaj rodzaj karty rozszerzen :" << endl;
+		o.ignore();
 		getline(o, p.rodzaj);
 		p.rodzaj = " Karta " + p.rodzaj;
 		cout << "Podaj producenta karty rozszerzen :" << endl;
 		getline(o, p.producent);
-		while (p.pamienc > 0)
-		{
-			cout << "Podaj liczbe Mb pamieci  rozszerzenia" << endl;
-			o >> p.pamienc;
-			p.CzyszczenieBufora();
-		}
+		cout << "Podaj liczbe Mb pamieci  rozszerzenia" << endl;
+		o >> p.pamienc;
+	
 		//p.pamienc = p.Wprowadzanie_inta("Podaj liczbe GB pamieci karty rozszerzen :");
 	}
 	return o;

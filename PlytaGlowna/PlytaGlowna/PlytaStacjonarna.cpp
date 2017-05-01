@@ -198,12 +198,14 @@ PlytaStacjonarna PlytaStacjonarna::operator--(int) {//Odejmuje karte rozszerzen
 }
 
 ostream& operator << (ostream &s, PlytaStacjonarna &p) {
+	cout << "Plyta Stacjoanrna:" << endl;
 	cout << "Producent : "; s << p.marka << endl;
-	cout << "Wymiar w mm : "; s << p.szerokosc; cout << " x "; s << p.dlugosc << endl;
-	cout << "Waga : "; s << p.waga; cout << " gram" << endl;
-	cout << "Dostepne szyny pamieci: "; s << p.iloscSzyn;
+	cout << "Szerokosc w mm : "; s << p.szerokosc << endl;
+	cout << "Dlugosc w mm "; s << p.dlugosc << endl;
+	cout << "Waga : "; s << p.waga; cout << " gram"; s << endl;
+	cout << "Dostepne szyny pamieci: "; s << p.iloscSzyn << endl;;
 	cout << " Zajete szyny pamieci : "; s << p.szynyZajete << endl;
-	cout << "Dostepne zlacza PCI: "; s << p.wejsciaPCI;
+	cout << "Dostepne zlacza PCI: "; s << p.wejsciaPCI << endl;
 	cout << " Zajete zlacza PCI: "; s << p.PCIzajete << endl;
 	p.dzialka();
 	s << p.soket;
@@ -222,31 +224,20 @@ ostream& operator << (ostream &s, PlytaStacjonarna &p) {
 istream& operator >> (istream &o, PlytaStacjonarna &p) {
 	cout << "Podaj nazwe producenta plyty :" << endl;
 	getline(o, p.marka);
-	while (p.iloscSzyn> 0)
-	{
-		cout << "Podaj liczbe dostepnych szyn pamieci" << endl;
-		o >> p.iloscSzyn;
-		p.CzyszczenieBufora();
-	}
-	while (p.szynyZajete> 0)
-	{
-		cout << "Podaj liczbe zajetych szyn pamieci " << endl;
-		o >> p.szynyZajete;
-		p.CzyszczenieBufora();
-	}
-	while (p.wejsciaPCI> 0)
-	{
-		cout << "Podaj liczbe zlaczy PCI" << endl;
-		o >> p.wejsciaPCI;
-		p.CzyszczenieBufora();
-	}
-	while (p.PCIzajete> 0)
-	{
-		cout << "Podaj liczbe zajetych zlacz PCI " << endl;
-		o >> p.PCIzajete;
-		p.CzyszczenieBufora();
-	}
-	
+	cout << "Podaj szerokosc w mm plyty :" << endl;
+	o >> p.szerokosc;
+	cout << "Podaj dlugosc w mm plyty :" << endl;
+	o >> p.dlugosc;
+	cout << "Podaj wage w gramch plyty :" << endl;
+	o >> p.waga;
+	cout << "Podaj liczbe dostepnych szyn pamieci" << endl;
+	o >> p.iloscSzyn;
+	cout << "Podaj liczbe zajetych szyn pamieci " << endl;
+	o >> p.szynyZajete;
+	cout << "Podaj liczbe zlaczy PCI" << endl;
+	o >> p.wejsciaPCI;
+	cout << "Podaj liczbe zajetych zlacz PCI " << endl;
+	o >> p.PCIzajete;
 	//p.szynyZajete = p.Wprowadzanie_inta("Podaj liczbe zajetych szyn pamieci ");
 	//p.wejsciaPCI = p.Wprowadzanie_inta("Podaj liczbe zlaczy PCI ");
 	//p.PCIzajete = p.Wprowadzanie_inta("Podaj liczbe zajetych zlacz PCI ");
@@ -280,9 +271,11 @@ void PlytaStacjonarna::wpiszDoPliku() {
 	plik.open("PlytaStacjonarna.txt", ios::out | ios::trunc);
 	if (plik.good() == true)
 	{
-		cout << "Udalo sie otworzyc plik" << endl;
+		
 		plik << *this;
 		plik.close();
+		system("cls");
+		cout << "Udalo sie zapisac dane w pliku " << endl;
 	}
 	else
 	{
@@ -297,6 +290,12 @@ void PlytaStacjonarna::wczytajZPliku() {
 	{
 		plik >> *this;
 		plik.close();
+		system("cls");
+		cout << "Udalo sie wczytac dane z pliku" << endl;
+	}
+	else
+	{
+		cout << "Nie mozna otworzyc pliku" << endl;
 	}
 }
 Producent PlytaStacjonarna::losuj() {

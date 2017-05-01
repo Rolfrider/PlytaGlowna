@@ -6,14 +6,14 @@
 #include<iostream>
 using namespace std;
 
-enum Taktowanie{ Niskie=1866, Srednie=2133, Wysokie=2400 };
-enum Pojemnosc { Mobilna =2 , Mala = 4, Srednia= 8, Duza = 16 };
+//enum Taktowanie{ Niskie=1866, Srednie=2133, Wysokie=2400 };
+//enum Pojemnosc { Mobilna =2 , Mala = 4, Srednia= 8, Duza = 16 };
 
 class SzynaPamieci
 {
 public:
 	SzynaPamieci();
-	SzynaPamieci(Pojemnosc poj, Taktowanie tak);
+	SzynaPamieci(int poj, int tak);
 	SzynaPamieci(bool mobilna);
 	~SzynaPamieci();
 	void PrzetaktujGora(SzynaPamieci &ram);
@@ -26,10 +26,11 @@ public:
 private:
 	int Wybor_opcji(int liczba_opcji);
 	string producent;
-	Pojemnosc pojemnosc;
-	Taktowanie taktowanie;
-	Taktowanie losujTaktowanie();
-	Pojemnosc losujPojemnosc();
+	int pojemnosc;
+	int taktowanie;
+	int losujTaktowanie();
+	int losujPojemnosc();
+	void CzyszczenieBufora();
 	
 };
 

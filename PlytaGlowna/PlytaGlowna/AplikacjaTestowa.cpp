@@ -16,8 +16,11 @@ int main()
 	PlytaGamingowa g;
 	PlytaStacjonarna s;
 	PlytaMobilna m;
-	s.wpiszDoPliku();
-	s.wczytajZPliku();
+	
+	m.wpiszDoPliku();
+	cout << m;
+	m.wczytajZPliku();
+	cout << m;
     return 0;
 }
 

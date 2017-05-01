@@ -20,14 +20,14 @@ SzynaPamieci::SzynaPamieci()
 	producent = "RASUS";
 	pojemnosc = losujPojemnosc();
 }
-SzynaPamieci::SzynaPamieci(Pojemnosc poj, Taktowanie tak)
+SzynaPamieci::SzynaPamieci(int poj, int tak)
 {
 	producent = "RASUS";
 	taktowanie = tak;
 	pojemnosc = poj;
 }
 SzynaPamieci::SzynaPamieci(bool mobilna) :
-	taktowanie(Niskie), pojemnosc(Mobilna), producent("MobileMem")
+	taktowanie(1866), pojemnosc(2), producent("MobileMem")
 {
 	DEBUG("Tworze szyne pamieci")
 }
@@ -36,49 +36,26 @@ ostream& operator<<(ostream &o, SzynaPamieci &s) {
 	cout << "Kosc pamieci RAM" << endl;
 	cout << "Producent : "; o << s.producent << endl;
 	cout << "Taktowanie pamieci : "; o << s.taktowanie << endl;
-	cout << "Pojemnosc : "; o << s.pojemnosc; cout << " GB" << endl;
+	cout << "Pojemnosc : "; o << s.pojemnosc; cout << " GB"; o << endl;
 	return o;
 }
 istream& operator >> (istream &o, SzynaPamieci &p) {
 
 	cout << "Podaj producenta ramu :" << endl;
+	o.ignore();
 	getline(o, p.producent);
-	cout << "Wybierz taktowanie ramu :" << endl; 
-	cout << "1. Niskie" << endl;
-	cout << "2. Srednie" << endl;
-	cout << "3. Wyskokie" << endl;
-	switch (p.Wybor_opcji(3))
-	{
-	case 1:
-		p.taktowanie = Niskie;
-		break;
-	case 2:
-		p.taktowanie = Srednie;
-		break;
-	case 3:
-		p.taktowanie = Wysokie;
-		break;
-	default:
-		p.taktowanie = Srednie;
-	}
-	cout << "Wybierz pojemnosc pamieci ram :" << endl;
-	cout << "1. Mala(4)" << endl;
-	cout << "2. Srednia(8)" << endl;
-	cout << "3. Duza(16)" << endl;
-	switch (p.Wybor_opcji(3))
-	{
-	case 1:
-		p.pojemnosc = Mala;
-		break;
-	case 2:
-		p.pojemnosc = Srednia;
-		break;
-	case 3:
-		p.pojemnosc = Duza;
-		break;
-	default:
-		p.pojemnosc = Srednia;
-	}
+	cout << "Wybierz taktowanie ramu(Wpisz jedna z podanych wartosci) :" << endl;
+	cout << "1. 1866" << endl;
+	cout << "2. 2133" << endl;
+	cout << "3. 2400" << endl;
+	o >> p.taktowanie;
+	cout << "Wybierz pojemnosc pamieci ram (Wpisz jedna z podanych wartosci):" << endl;
+	cout << "1. 2 (GB)" << endl;
+	cout << "2. 4 (GB)" << endl;
+	cout << "3. 8 (GB)" << endl;
+	cout << "3. 16 (GB)" << endl;
+	o >> p.pojemnosc;
+	p.CzyszczenieBufora();
 	return o;
 }
 /*
@@ -89,6 +66,10 @@ SzynaPamieci& SzynaPamieci::operator=(SzynaPamieci &s) {
 	return *this;
 }*/
 //metody
+void SzynaPamieci::CzyszczenieBufora() {
+	cin.clear();
+	cin.sync();
+}
 int SzynaPamieci::Wybor_opcji(int liczba_opcji)
 {
 	bool blad = true;
@@ -102,51 +83,51 @@ int SzynaPamieci::Wybor_opcji(int liczba_opcji)
 	return wybor;
 }
 void SzynaPamieci::PrzetaktujGora(SzynaPamieci &ram) {
-	if (ram.taktowanie == Niskie)
-		ram.taktowanie = Srednie;
-	else if (ram.taktowanie == Srednie)
-		ram.taktowanie = Wysokie;
+	if (ram.taktowanie == 1866)
+		ram.taktowanie = 2133;
+	else if (ram.taktowanie == 2133)
+		ram.taktowanie = 2400;
 	else
 		cout << "Jest to najwyzsze mozliwe taktowanie" << endl;
 }
 void SzynaPamieci::PrzetaktujDol(SzynaPamieci &ram) {
-	if (ram.taktowanie == Wysokie)
-		ram.taktowanie = Srednie;
-	else if (ram.taktowanie == Srednie)
-		ram.taktowanie = Niskie;
+	if (ram.taktowanie == 2400)
+		ram.taktowanie = 2133;
+	else if (ram.taktowanie == 2133)
+		ram.taktowanie = 1866;
 	else
 		cout << "Jest to najnizsze mozliwe taktowanie" << endl;
 }
-Pojemnosc SzynaPamieci::losujPojemnosc() {
+int SzynaPamieci::losujPojemnosc() {
 	int a = (rand() % 3 + 1);
 	switch (a) {
 	case 1:
-		return Mala;
+		return 4;
 		break;
 	case 2:
-		return Srednia;
+		return 8;
 		break;
 	case 3:
-		return Duza;
+		return 16;
 		break;
 	default:
-		return Srednia;
+		return 8;
 	}
 }
-Taktowanie SzynaPamieci::losujTaktowanie() {
+int SzynaPamieci::losujTaktowanie() {
 	int a = (rand() % 3 + 1);
 	switch (a) {
 	case 1:
-		return Niskie;
+		return 1866;
 		break;
 	case 2:
-		return Srednie;
+		return 2133;
 		break;
 	case 3:
-		return Wysokie;
+		return 2400;
 		break;
 	default:
-		return Srednie;
+		return 2133;
 	}
 }
 SzynaPamieci::~SzynaPamieci()

@@ -24,7 +24,7 @@ PlytaGamingowa::PlytaGamingowa()
 	{
 		for (int i = 0; i < szynyZajete; i++)
 		{
-			RAM.push_back(SzynaPamieci(Duza, Wysokie));
+			RAM.push_back(SzynaPamieci(16, 2400));
 		}
 	}
 	if (wejsciaPCI != 0)
@@ -40,12 +40,14 @@ PlytaGamingowa::PlytaGamingowa()
 
 
 ostream& operator << (ostream &s, PlytaGamingowa &p) {
+	cout << "Plyta Gamingowa :" << endl;
 	cout << "Producent : "; s << p.marka << endl;
-	cout << "Wymiar w mm : "; s << p.szerokosc; cout << " x "; s << p.dlugosc << endl;
-	cout << "Waga : "; s << p.waga; cout << " gram" << endl;
-	cout << "Dostepne szyny pamieci: "; s << p.iloscSzyn;
+	cout << "Szerokosc w mm : "; s << p.szerokosc << endl;
+	cout << "Dlugosc w mm "; s << p.dlugosc << endl;
+	cout << "Waga : "; s << p.waga; cout << " gram"; s << endl;
+	cout << "Dostepne szyny pamieci: "; s << p.iloscSzyn << endl;;
 	cout << " Zajete szyny pamieci : "; s << p.szynyZajete << endl;
-	cout << "Dostepne zlacza PCI: "; s << p.wejsciaPCI;
+	cout << "Dostepne zlacza PCI: "; s << p.wejsciaPCI << endl;
 	cout << " Zajete zlacza PCI: "; s << p.PCIzajete << endl;
 	cout << "Kolor podswietlenia RGB : "; s << p.podswietlenieRGB << endl;
 	cout << "Cechy szczegolne : "; s << p.cechySzczegolne << endl;
@@ -67,14 +69,29 @@ ostream& operator << (ostream &s, PlytaGamingowa &p) {
 istream& operator >> (istream &o, PlytaGamingowa &p) {
 	cout << "Podaj nazwe producenta plyty :" << endl;
 	getline(o, p.marka);
-	p.iloscSzyn = p.Wprowadzanie_inta("Podaj liczbe szyn pamieci ");
-	p.szynyZajete = p.Wprowadzanie_inta("Podaj liczbe zajetych szyn pamieci ");
-	p.wejsciaPCI = p.Wprowadzanie_inta("Podaj liczbe zlaczy PCI ");
-	p.PCIzajete = p.Wprowadzanie_inta("Podaj liczbe zajetych zlacz PCI ");
-	cout << "Podaj cechy szcegolne :" << endl;
-	getline(o, p.cechySzczegolne);
+	cout << "Podaj szerokosc w mm plyty :" << endl;
+	o >> p.szerokosc;
+	cout << "Podaj dlugosc w mm plyty :" << endl;
+	o >> p.dlugosc;
+	cout << "Podaj wage w gramch plyty :" << endl;
+	o >> p.waga;
+	cout << "Podaj liczbe dostepnych szyn pamieci" << endl;
+	o >> p.iloscSzyn;
+	cout << "Podaj liczbe zajetych szyn pamieci " << endl;
+	o >> p.szynyZajete;	
+	cout << "Podaj liczbe zlaczy PCI" << endl;
+	o >> p.wejsciaPCI;
+	cout << "Podaj liczbe zajetych zlacz PCI " << endl;
+	o >> p.PCIzajete;	
+	//p.iloscSzyn = p.Wprowadzanie_inta("Podaj liczbe szyn pamieci ");
+	//p.szynyZajete = p.Wprowadzanie_inta("Podaj liczbe zajetych szyn pamieci ");
+	//p.wejsciaPCI = p.Wprowadzanie_inta("Podaj liczbe zlaczy PCI ");
+	//p.PCIzajete = p.Wprowadzanie_inta("Podaj liczbe zajetych zlacz PCI ");
+	o.ignore();
 	cout << "Podaj kolor podœwietlenia RGB :" << endl;
 	getline(o, p.podswietlenieRGB);
+	cout << "Podaj cechy szcegolne :" << endl;
+	getline(o, p.cechySzczegolne);
 	cout << "Podaj material z ktorego zostala wykonana plyta : " << endl;
 	getline(o, p.material);
 	o >> p.soket;
@@ -98,6 +115,38 @@ void PlytaGamingowa::wpiszDane() {
 }
 void PlytaGamingowa::stan() {
 	cout << "Gamingowa plyta gotowa do uzytku" << endl;;
+}
+void PlytaGamingowa::wpiszDoPliku() {
+	fstream plik;
+	plik.open("PlytaGamingowa.txt", ios::out | ios::trunc);
+	if (plik.good() == true)
+	{
+
+		plik << *this;
+		plik.close();
+		system("cls");
+		cout << "Udalo sie zapisac dane w pliku " << endl;
+	}
+	else
+	{
+		cout << "Nie udalo sie otworzyc pliku" << endl;
+	}
+}
+
+void PlytaGamingowa::wczytajZPliku() {
+	fstream plik;
+	plik.open("PlytaGamingowa.txt", ios::in);
+	if (plik.good() == true)
+	{
+		plik >> *this;
+		plik.close();
+		system("cls");
+		cout << "Udalo sie wczytac dane z pliku" << endl;
+	}
+	else
+	{
+		cout << "Nie mozna otworzyc pliku" << endl;
+	}
 }
 PlytaGamingowa::~PlytaGamingowa()
 {

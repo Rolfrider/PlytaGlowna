@@ -19,7 +19,11 @@ PlytaMobilna::PlytaMobilna()
 
 ostream& operator << (ostream &s, PlytaMobilna &p)
 {
+	cout << "Plyta Mobilna" << endl;
 	cout << "Producent plyty mobilnej : "; s << p.marka << endl;
+	cout << "Szerokosc w mm : "; s << p.szerokosc << endl;
+	cout << "Dlugosc w mm "; s << p.dlugosc << endl;
+	cout << "Waga : "; s << p.waga; cout << " gram"; s << endl;
 	s << p.procesor << endl;
 	s << p.ram << endl;
 	cout << "Dodatkowe urzadzenia : " << endl;
@@ -38,6 +42,12 @@ istream& operator >> (istream &o, PlytaMobilna &p)
 {
 	cout << "Podaj nazwe producenta plyty :" << endl;
 	o >> p.marka;
+	cout << "Podaj szerokosc w mm plyty :" << endl;
+	o >> p.szerokosc;
+	cout << "Podaj dlugosc w mm plyty :" << endl;
+	o >> p.dlugosc;
+	cout << "Podaj wage w gramch plyty :" << endl;
+	o >> p.waga;
 	o >> p.procesor;
 	o >> p.ram;
 	for (int i = 0; i < p.dodatki.size(); i++) {
@@ -62,8 +72,15 @@ void PlytaMobilna::wpiszDoPliku() {
 	plik.open("PlytaMobilna.txt", ios::in);
 	if (plik.good() == true)
 	{
+
 		plik << *this;
 		plik.close();
+		system("cls");
+		cout << "Udalo sie zapisac dane w pliku " << endl;
+	}
+	else
+	{
+		cout << "Nie udalo sie otworzyc pliku" << endl;
 	}
 }
 
@@ -74,6 +91,12 @@ void PlytaMobilna::wczytajZPliku() {
 	{
 		plik >> *this;
 		plik.close();
+		system("cls");
+		cout << "Udalo sie wczytac dane z pliku" << endl;
+	}
+	else
+	{
+		cout << "Nie mozna otworzyc pliku" << endl;
 	}
 }
 
