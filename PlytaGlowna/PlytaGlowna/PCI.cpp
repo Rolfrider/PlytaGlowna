@@ -58,7 +58,6 @@ istream& operator>>(istream &o, PCI &p) {
 			cout << "Podaj liczbe Mb pamieci  rozszerzenia" << endl;
 			o >> p.pamienc;
 			
-			//p.pamienc = p.Wprowadzanie_inta("Podaj liczbe Mb pamieci  rozszerzenia :");
 		}
 	}else {
 		cout << "Podaj rodzaj karty rozszerzen :" << endl;
@@ -70,7 +69,6 @@ istream& operator>>(istream &o, PCI &p) {
 		cout << "Podaj liczbe Mb pamieci  rozszerzenia" << endl;
 		o >> p.pamienc;
 	
-		//p.pamienc = p.Wprowadzanie_inta("Podaj liczbe GB pamieci karty rozszerzen :");
 	}
 	return o;
 }

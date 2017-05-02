@@ -83,10 +83,6 @@ istream& operator >> (istream &o, PlytaGamingowa &p) {
 	o >> p.wejsciaPCI;
 	cout << "Podaj liczbe zajetych zlacz PCI " << endl;
 	o >> p.PCIzajete;	
-	//p.iloscSzyn = p.Wprowadzanie_inta("Podaj liczbe szyn pamieci ");
-	//p.szynyZajete = p.Wprowadzanie_inta("Podaj liczbe zajetych szyn pamieci ");
-	//p.wejsciaPCI = p.Wprowadzanie_inta("Podaj liczbe zlaczy PCI ");
-	//p.PCIzajete = p.Wprowadzanie_inta("Podaj liczbe zajetych zlacz PCI ");
 	o.ignore();
 	cout << "Podaj kolor podœwietlenia RGB :" << endl;
 	getline(o, p.podswietlenieRGB);
@@ -110,9 +106,7 @@ istream& operator >> (istream &o, PlytaGamingowa &p) {
 void PlytaGamingowa::wypiszDane() {
 	cout << *this << endl;;
 }
-void PlytaGamingowa::wpiszDane() {
-	cin >> *this;
-}
+
 void PlytaGamingowa::stan() {
 	cout << "Gamingowa plyta gotowa do uzytku" << endl;;
 }

@@ -60,9 +60,7 @@ istream& operator >> (istream &o, PlytaMobilna &p)
 void PlytaMobilna::wypiszDane() {
 	cout << *this << endl;
 }
-void PlytaMobilna::wpiszDane() {
-	cin >> *this;
-}
+
 void PlytaMobilna::stan() {
 	cout << "Mobilna plyta gotowa do uzytku" << endl;;
 }

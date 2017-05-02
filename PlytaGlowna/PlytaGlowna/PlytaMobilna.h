@@ -25,7 +25,6 @@ public:
 	friend istream& operator >> (istream &o, PlytaMobilna &p);
 
 	void wypiszDane();
-	void wpiszDane();
 	void stan();
 	void wpiszDoPliku();
 	void wczytajZPliku();

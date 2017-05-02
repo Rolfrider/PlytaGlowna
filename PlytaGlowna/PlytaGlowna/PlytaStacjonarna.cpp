@@ -238,9 +238,6 @@ istream& operator >> (istream &o, PlytaStacjonarna &p) {
 	o >> p.wejsciaPCI;
 	cout << "Podaj liczbe zajetych zlacz PCI " << endl;
 	o >> p.PCIzajete;
-	//p.szynyZajete = p.Wprowadzanie_inta("Podaj liczbe zajetych szyn pamieci ");
-	//p.wejsciaPCI = p.Wprowadzanie_inta("Podaj liczbe zlaczy PCI ");
-	//p.PCIzajete = p.Wprowadzanie_inta("Podaj liczbe zajetych zlacz PCI ");
 	o >> p.soket;
 	for (int i = 0; i < p.PCIzajete; i++) {
 		p.dzialka();
@@ -256,10 +253,6 @@ istream& operator >> (istream &o, PlytaStacjonarna &p) {
 //METODY
 void PlytaStacjonarna::wypiszDane(){
 	cout << *this << endl;
-}
-
-void PlytaStacjonarna::wpiszDane() {
-	cin >> *this;
 }
 
 void PlytaStacjonarna::stan() {

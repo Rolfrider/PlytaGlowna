@@ -22,7 +22,6 @@ public:
 	void dzialka();
 	static int ZwrocLiczbePlyt();
 	void wypiszDane();
-	void wpiszDane();
 	void stan();
 	void wpiszDoPliku();
 	void wczytajZPliku();

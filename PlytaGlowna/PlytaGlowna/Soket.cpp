@@ -64,10 +64,6 @@ istream& operator >> (istream &o,Soket &p) {
 	o >> p.rodzaj;
 	cout << "Podaj liczbe MB pamieci Cache procesora" << endl;
 	o >> p.pamiecCache;
-	//p.rodzaj = p.Wprowadzenie_inta("Podaj nr. id gniazda procesora ");
-	//p.liczbaRdzeni = p.Wprowadzenie_inta("Podaj liczbe rdzeni procesora :");
-	//p.taktowanie = p.Wprowadzenie_float("Podaj taktowanie w GHz procesora :");
-//	p.pamiecCache= p.Wprowadzenie_inta("Podaj liczbe MB pamieci Cache procesora :");
 	if (p.zintegrowanaKartaGraficzna != nullptr)
 	{
 		o >> *p.zintegrowanaKartaGraficzna;
