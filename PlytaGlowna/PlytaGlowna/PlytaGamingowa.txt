@@ -1,4 +1,4 @@
- MSC 
+ RASUS 
 305
 244
 222.1
@@ -13,9 +13,9 @@ Czysty stop aluminium
 3.5
 2011
 6
- Karta dzwiekowa 
-Masus
-1
+ Karta graficzna 
+Minibajt
+6
 Karta graficzna
 Zotac
 8

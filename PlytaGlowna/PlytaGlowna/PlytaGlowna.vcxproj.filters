@@ -39,9 +39,6 @@
     <ClInclude Include="SzynaPamieci.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="Poprawnosc.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
     <ClInclude Include="PlytaMobilna.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>

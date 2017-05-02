@@ -55,33 +55,9 @@ istream& operator >> (istream &o, SzynaPamieci &p) {
 	cout << "3. 8 (GB)" << endl;
 	cout << "3. 16 (GB)" << endl;
 	o >> p.pojemnosc;
-	p.CzyszczenieBufora();
 	return o;
 }
-/*
-SzynaPamieci& SzynaPamieci::operator=(SzynaPamieci &s) {
-	producent = s.producent;
-	taktowanie = s.taktowanie;
-	pojemnosc = s.pojemnosc;
-	return *this;
-}*/
 //metody
-void SzynaPamieci::CzyszczenieBufora() {
-	cin.clear();
-	cin.sync();
-}
-int SzynaPamieci::Wybor_opcji(int liczba_opcji)
-{
-	bool blad = true;
-	int wybor;
-	while (blad)
-	{
-		cin >> wybor;
-		if (wybor > 0 && wybor <= liczba_opcji)
-			blad = false;
-	}
-	return wybor;
-}
 void SzynaPamieci::PrzetaktujGora(SzynaPamieci &ram) {
 	if (ram.taktowanie == 1866)
 		ram.taktowanie = 2133;

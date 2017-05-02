@@ -1,24 +1,36 @@
  MSC 
-4
+305
+244
+222.1
+6
+5
 3
-2
-2
+3
 4
 3.5
 2011
 6
  Karta dzwiekowa 
+Minibajt
+3
+ Karta graficzna 
+Masus
+4
+ Karta graficzna 
 Turbo
-1
- Karta sieciowa 
-Turbo
-6
+4
+RASUS
+2133
+4
 RASUS
 1866
 8
 RASUS
-2133
-4
+2400
+16
+RASUS
+2400
+8
 RASUS
 1866
 8

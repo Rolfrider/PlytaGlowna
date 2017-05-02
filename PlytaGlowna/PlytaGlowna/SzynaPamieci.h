@@ -24,13 +24,11 @@ public:
 	
 	
 private:
-	int Wybor_opcji(int liczba_opcji);
 	string producent;
 	int pojemnosc;
 	int taktowanie;
 	int losujTaktowanie();
 	int losujPojemnosc();
-	void CzyszczenieBufora();
 	
 };
 

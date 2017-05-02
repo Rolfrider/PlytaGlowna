@@ -101,56 +101,6 @@ Soket& Soket::operator= (const Soket &s)
 	return *this;
 }
 // METODY
-void Soket::CzyszczenieBufora() {
-	cin.clear();
-	cin.sync();
-}
-
-float Soket::Wprowadzenie_float(string zapytanie)
-{
-	float wartosc;
-	bool blad = true;
-	string znaki;
-	while (blad)
-	{
-		cout << zapytanie << endl;
-		getline(cin, znaki);
-		blad = false;
-		for (int i = 0; i < znaki.length(); i++)
-		{
-			if ((znaki[i] < '0' || znaki[i]>'9') && (znaki[i] != '.'))
-				blad = true;
-			else
-				continue;
-		}
-	}
-	//istringstream iss(znaki);
-	//iss >> wartosc;
-	wartosc = stof(znaki);
-	return wartosc;
-}
-int Soket::Wprowadzenie_inta(string zapytanie)
-{
-	int wartosc;
-	bool blad = true;
-	string znaki;
-	while (blad)
-	{
-		cout << zapytanie << endl;
-		getline(cin, znaki);
-		blad = false;
-		for (int i = 0; i < znaki.length(); i++)
-		{
-			if (znaki[i] < '0' || znaki[i]>'9')
-				blad = true;
-			else
-				continue;
-		}
-	}
-	istringstream iss(znaki);
-	iss >> wartosc;
-	return wartosc;
-}
 void Soket::Spec() {
 	cout << "Dane procesora:" << endl;
 	cout << "Liczba Rdzeni : " << pokazLiczbeRdzenie() << endl;
