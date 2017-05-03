@@ -9,12 +9,13 @@
 #include<iostream>
 
 int Wprowadzanie_inta(string, char, char);
+void test();
 
 PlytaGlowna *p;
 PlytaStacjonarna s;
 PlytaMobilna m;
 PlytaGamingowa g;
-vector<PlytaGlowna> plyty;
+vector<PlytaGlowna*> plyty;
 
 int main()
 {
@@ -72,6 +73,9 @@ int main()
 			case 3:
 			{
 				p->wypiszDane();
+				cout << " Wciœnij ENTER, aby kontynuowac " << endl;
+				getchar();
+				system("cls");
 				break;
 			}
 			case 4:
@@ -81,7 +85,7 @@ int main()
 			}
 			case 5:
 			{
-				//tesowanie 
+				test();
 				break;
 			}
 			case 6:
@@ -96,6 +100,39 @@ int main()
 	
 
     return 0;
+}
+
+void test()
+{
+	cout << endl;
+	cout << "Test metod wirualnych na wektorze" << endl;
+	cout << "Dodajemy nasze obiekty do vectora" << endl;
+	cout << endl;
+	plyty.push_back(&s);
+	plyty.push_back(&g);
+	plyty.push_back(&m);
+	cout << "Plyta Stacjonarna: " << endl;
+	plyty[0]->stan();
+	cout << endl;
+	plyty[0]->wypiszDane();
+	cout << " Wciœnij ENTER, aby kontynuowac " <<endl;
+	getchar();
+	system("cls");
+	cout << "Plyta Gamingowa: " << endl;
+	plyty[1]->stan();
+	cout << endl;
+	plyty[1]->wypiszDane();
+	cout << " Wciœnij ENTER, aby kontynuowac " << endl;
+	getchar();
+	system("cls");
+	cout << "Plyta Mobilna: " << endl;
+	plyty[2]->stan();
+	cout << endl;
+	plyty[2]->wypiszDane();
+	cout << " Wciœnij ENTER, aby kontynuowac " << endl;
+	getchar();
+	system("cls");
+
 }
 
 int Wprowadzanie_inta(string zapytanie, char min, char max)
@@ -118,29 +155,5 @@ int Wprowadzanie_inta(string zapytanie, char min, char max)
 	}
 	istringstream iss(znaki);
 	iss >> wartosc;
-	return wartosc;
-}
-
-float Wprowadzenie_float(string zapytanie)
-{
-	float wartosc;
-	bool blad = true;
-	string znaki;
-	while (blad)
-	{
-		cout << zapytanie << endl;
-		getline(cin, znaki);
-		blad = false;
-		for (int i = 0; i < znaki.length(); i++)
-		{
-			if ((znaki[i] < '0' || znaki[i]>'9') && (znaki[i] != '.'))
-				blad = true;
-			else
-				continue;
-		}
-	}
-	//istringstream iss(znaki);
-	//iss >> wartosc;
-	wartosc = stof(znaki);
 	return wartosc;
 }
