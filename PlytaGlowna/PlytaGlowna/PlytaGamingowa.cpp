@@ -92,11 +92,11 @@ istream& operator >> (istream &o, PlytaGamingowa &p) {
 	getline(o, p.material);
 	o >> p.soket;
 	
-	for (int i = 0; i < p.PCIzajete; i++) {
+	for (int i = 0; i < p.karty.size(); i++) {
 		p.dzialka();
 		o >> p.karty[i];
 	}
-	for (int i = 0; i < p.szynyZajete; i++) {
+	for (int i = 0; i < p.RAM.size(); i++) {
 		p.dzialka();
 		o >> p.RAM[i];
 	}

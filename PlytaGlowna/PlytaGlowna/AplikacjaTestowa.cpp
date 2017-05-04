@@ -8,7 +8,7 @@
 #include "PlytaGamingowa.h"
 #include<iostream>
 
-int Wprowadzanie_inta(string, char, char);
+int Wprowadzanie_inta(string, int, int);
 void test();
 
 PlytaGlowna *p;
@@ -36,12 +36,12 @@ int main()
 		cout << "4. Wczytanie obiektu z pliku" << endl;
 		cout << "5. Testowanie obiektow(wszystkich)" << endl;
 		cout << "6. Wyjscie z programu" << endl;
-		switch (Wprowadzanie_inta("Wprowdz liczbe odpowiadajaca dzialaniu", '1', '6')) 
+		switch (Wprowadzanie_inta("Wprowdz liczbe odpowiadajaca dzialaniu", 1, 6)) 
 		{
 			cout << "\n" << endl;
 			case 1: 
 			{
-				switch (Wprowadzanie_inta("Wprowadz numer obiektu\n 1. Plyta Stacjonarna \n 2. Plyta Mobilna \n 3. Plyta Gamingowa", '1', '3'))
+				switch (Wprowadzanie_inta("Wprowadz numer obiektu\n 1. Plyta Stacjonarna \n 2. Plyta Mobilna \n 3. Plyta Gamingowa", 1, 3))
 				{
 					case 1:
 					{
@@ -123,7 +123,7 @@ void test()
 
 }
 
-int Wprowadzanie_inta(string zapytanie, char min, char max)
+int Wprowadzanie_inta(string zapytanie, int min, int max)
 {
 	int wartosc;
 	bool blad = true;
@@ -132,16 +132,19 @@ int Wprowadzanie_inta(string zapytanie, char min, char max)
 	{
 		cout << zapytanie << endl;
 		getline(cin, znaki);
-		blad = false;
 		for (int i = 0; i < znaki.length(); i++)
 		{
-			if (znaki[i] < min || znaki[i]> max)
+			if (znaki[i] < 0 || znaki[i]> 9)
 				blad = true;
 			else
 				continue;
 		}
+		istringstream iss(znaki);
+		iss >> wartosc;
+		if(wartosc >= min && wartosc<=max)
+			blad = false;
+
 	}
-	istringstream iss(znaki);
-	iss >> wartosc;
+	
 	return wartosc;
 }
