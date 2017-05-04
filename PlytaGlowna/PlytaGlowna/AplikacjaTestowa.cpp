@@ -111,27 +111,15 @@ void test()
 	plyty.push_back(&s);
 	plyty.push_back(&g);
 	plyty.push_back(&m);
-	cout << "Plyta Stacjonarna: " << endl;
-	plyty[0]->stan();
-	cout << endl;
-	plyty[0]->wypiszDane();
-	cout << " Wciœnij ENTER, aby kontynuowac " <<endl;
-	getchar();
-	system("cls");
-	cout << "Plyta Gamingowa: " << endl;
-	plyty[1]->stan();
-	cout << endl;
-	plyty[1]->wypiszDane();
-	cout << " Wciœnij ENTER, aby kontynuowac " << endl;
-	getchar();
-	system("cls");
-	cout << "Plyta Mobilna: " << endl;
-	plyty[2]->stan();
-	cout << endl;
-	plyty[2]->wypiszDane();
-	cout << " Wciœnij ENTER, aby kontynuowac " << endl;
-	getchar();
-	system("cls");
+	for (int i = 0; i < plyty.size(); i++) 
+	{
+		plyty[i]->stan();
+		cout << endl;
+		plyty[i]->wypiszDane();
+		cout << " Wciœnij ENTER, aby kontynuowac " << endl;
+		getchar();
+		system("cls");
+	}
 
 }
 

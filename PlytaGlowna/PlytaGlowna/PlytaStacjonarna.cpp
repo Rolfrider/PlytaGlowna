@@ -209,11 +209,11 @@ ostream& operator << (ostream &s, PlytaStacjonarna &p) {
 	cout << " Zajete zlacza PCI: "; s << p.PCIzajete << endl;
 	p.dzialka();
 	s << p.soket;
-	for (int i = 0; i < p.PCIzajete; i++) {
+	for (int i = 0; i < p.karty.size(); i++) {
 		p.dzialka();
 		s << p.karty[i];
 	}
-	for (int i = 0; i < p.szynyZajete; i++) {
+	for (int i = 0; i < p.RAM.size(); i++) {
 		p.dzialka();
 		s << p.RAM[i];
 	}
@@ -239,11 +239,11 @@ istream& operator >> (istream &o, PlytaStacjonarna &p) {
 	cout << "Podaj liczbe zajetych zlacz PCI " << endl;
 	o >> p.PCIzajete;
 	o >> p.soket;
-	for (int i = 0; i < p.PCIzajete; i++) {
+	for (int i = 0; i < p.karty.size(); i++) {
 		p.dzialka();
 		o >> p.karty[i];
 	}
-	for (int i = 0; i < p.szynyZajete; i++) {
+	for (int i = 0; i < p.RAM.size(); i++) {
 		p.dzialka();
 		o >> p.RAM[i];
 	}
