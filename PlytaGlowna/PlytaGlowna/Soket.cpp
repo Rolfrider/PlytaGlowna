@@ -10,7 +10,7 @@
 // KONSTRUKTORY
 Soket::Soket()
 {
-	DEBUG("Tworze soket")
+	DEBUG("Tworze procesor")
 	rodzaj = 2011;
 	liczbaRdzeni = 4;
 	taktowanie = 3.5;
@@ -70,8 +70,8 @@ istream& operator >> (istream &o,Soket &p) {
 	}
 	return o;
 }
-bool Soket::operator==(Soket &soket) {
-	if (rodzaj == soket.rodzaj) {
+bool Soket::operator==(Soket &procesor) {
+	if (rodzaj == procesor.rodzaj) {
 		cout << "Mozna wymienic" << endl;
 		return true;
 	}
@@ -121,7 +121,7 @@ void Soket::podkrecProcka() {
 }
 Soket::~Soket()
 {
-	DEBUG("Niszcze soket")
+	DEBUG("Niszcze procesor")
 	if (zintegrowanaKartaGraficzna != nullptr)
 		delete zintegrowanaKartaGraficzna;
 

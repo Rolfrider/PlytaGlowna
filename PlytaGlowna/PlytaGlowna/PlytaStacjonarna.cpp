@@ -7,7 +7,7 @@
 #define DEBUG(x) cout<<x<<endl;
 #endif // _DEBUG
 
-int PlytaStacjonarna::iloscPlyt = 0;
+int PlytaStacjonarna::liczbaPlyt = 0;
 // KONSKRUKTORY
 PlytaStacjonarna::PlytaStacjonarna()
 {
@@ -17,14 +17,14 @@ PlytaStacjonarna::PlytaStacjonarna()
 	dlugosc = 244;
 	waga = 222.1;
 	marka = losuj();
-	iloscPlyt++;
-	iloscSzyn = (rand() % 6 + 1);
+	liczbaPlyt++;
+	liczbaSzyn = (rand() % 6 + 1);
 	wejsciaPCI = (rand() % 4 + 1);
-	szynyZajete = (rand() % iloscSzyn + 1);
+	szynyZajete = (rand() % liczbaSzyn + 1);
 	PCIzajete = (rand() % wejsciaPCI + 1);
 
-	RAM.reserve(iloscSzyn);// Rezerwuje nam miejsce na max tyle elementów ile jest szyn
-	if (iloscSzyn!=0)
+	RAM.reserve(liczbaSzyn);///< Rezerwuje nam miejsce na max tyle elementów ile jest szyn
+	if (liczbaSzyn!=0)
 	{
 		for (int i = 0; i < szynyZajete; i++)
 		{
@@ -42,15 +42,15 @@ PlytaStacjonarna::PlytaStacjonarna()
 	}
 }
 
-PlytaStacjonarna::PlytaStacjonarna(int iloscSzyn, int szynyZajete, int wejsciaPCI, int PCIzajete) :
-	iloscSzyn(iloscSzyn), szynyZajete(szynyZajete), wejsciaPCI(wejsciaPCI), PCIzajete(PCIzajete) {
+PlytaStacjonarna::PlytaStacjonarna(int liczbaSzyn, int szynyZajete, int wejsciaPCI, int PCIzajete) :
+	liczbaSzyn(liczbaSzyn), szynyZajete(szynyZajete), wejsciaPCI(wejsciaPCI), PCIzajete(PCIzajete) {
 	szerokosc = 305;
 	dlugosc = 244;
 	waga = 222.1;
 	marka = losuj();
-	iloscPlyt++;
-	RAM.reserve(iloscSzyn);// Rezerwuje nam miejsce na max tyle elementów ile jest szyn
-	if (iloscSzyn != 0)
+	liczbaPlyt++;
+	RAM.reserve(liczbaSzyn);// Rezerwuje nam miejsce na max tyle elementów ile jest szyn
+	if (liczbaSzyn != 0)
 	{
 		for (int i = 0; i < szynyZajete; i++)
 		{
@@ -72,9 +72,9 @@ PlytaStacjonarna::PlytaStacjonarna(int iloscSzyn, int szynyZajete, int wejsciaPC
 
 PlytaStacjonarna::PlytaStacjonarna(PlytaStacjonarna &p) { // konstruktor kopiuj¹cy 
 	DEBUG("Tworze plyte glowna")
-	iloscPlyt++;
+	liczbaPlyt++;
 	marka = p.marka;
-	iloscSzyn = p.iloscSzyn;
+	liczbaSzyn = p.liczbaSzyn;
 	wejsciaPCI = p.wejsciaPCI;
 	szynyZajete = p.szynyZajete;
 	PCIzajete = p.PCIzajete;
@@ -83,7 +83,7 @@ PlytaStacjonarna::PlytaStacjonarna(PlytaStacjonarna &p) { // konstruktor kopiuj¹
 }
 // OPERATORY
 bool PlytaStacjonarna::operator==(PlytaStacjonarna &p) {
-	return (iloscSzyn == p.iloscSzyn && wejsciaPCI == p.wejsciaPCI);
+	return (liczbaSzyn == p.liczbaSzyn && wejsciaPCI == p.wejsciaPCI);
 }
 
 PlytaStacjonarna& PlytaStacjonarna::operator^(const int a) {
@@ -122,11 +122,13 @@ PCI& PlytaStacjonarna::operator[](const int i) {
 	else
 	{
 		cout << "Zlacze PCI nie istnieje lub nic nie jest do niego podloczone" << endl;
+		cout << "Zwracam domyslny numer zlocza PCI(0)" << endl;
+		return karty[0];
 	}
 }
 
 PlytaStacjonarna& PlytaStacjonarna::operator=(const PlytaStacjonarna &p) {
-	iloscSzyn = p.iloscSzyn;
+	liczbaSzyn = p.liczbaSzyn;
 	wejsciaPCI = p.wejsciaPCI;
 	szynyZajete = p.szynyZajete;
 	PCIzajete = p.PCIzajete;
@@ -141,7 +143,7 @@ PlytaStacjonarna& PlytaStacjonarna::operator=(const PlytaStacjonarna &p) {
 PlytaStacjonarna& PlytaStacjonarna::operator++() { //Dodaje RAM jesli to mozliwe
 	cout << "Procedura dodania nowej kosci RAM" << endl;
 		
-		if (iloscSzyn > szynyZajete)
+		if (liczbaSzyn > szynyZajete)
 		{
 			RAM.push_back(SzynaPamieci());
 			szynyZajete++;
@@ -171,7 +173,7 @@ PlytaStacjonarna& PlytaStacjonarna::operator--() { //Odejmowanie RAM jesli to mo
 PlytaStacjonarna PlytaStacjonarna::operator++(int) {//Dodaje karte rozszerzen
 	cout << "Procedura dodania nowej karty rozszerzen" << endl;
 	PlytaStacjonarna kopia = *this;
-	if ((szynyZajete < iloscSzyn) && (karty.max_size() > karty.size()))
+	if ((szynyZajete < liczbaSzyn) && (karty.max_size() > karty.size()))
 	{
 		karty.push_back(PCI());
 		PCIzajete++;
@@ -203,12 +205,12 @@ ostream& operator << (ostream &s, PlytaStacjonarna &p) {
 	cout << "Szerokosc w mm : "; s << p.szerokosc << endl;
 	cout << "Dlugosc w mm "; s << p.dlugosc << endl;
 	cout << "Waga : "; s << p.waga; cout << " gram"; s << endl;
-	cout << "Dostepne szyny pamieci: "; s << p.iloscSzyn << endl;;
+	cout << "Dostepne szyny pamieci: "; s << p.liczbaSzyn << endl;;
 	cout << " Zajete szyny pamieci : "; s << p.szynyZajete << endl;
 	cout << "Dostepne zlacza PCI: "; s << p.wejsciaPCI << endl;
 	cout << " Zajete zlacza PCI: "; s << p.PCIzajete << endl;
 	p.dzialka();
-	s << p.soket;
+	s << p.procesor;
 	for (int i = 0; i < p.karty.size(); i++) {
 		p.dzialka();
 		s << p.karty[i];
@@ -231,14 +233,14 @@ istream& operator >> (istream &o, PlytaStacjonarna &p) {
 	cout << "Podaj wage w gramch plyty :" << endl;
 	o >> p.waga;
 	cout << "Podaj liczbe dostepnych szyn pamieci" << endl;
-	o >> p.iloscSzyn;
+	o >> p.liczbaSzyn;
 	cout << "Podaj liczbe zajetych szyn pamieci " << endl;
 	o >> p.szynyZajete;
 	cout << "Podaj liczbe zlaczy PCI" << endl;
 	o >> p.wejsciaPCI;
 	cout << "Podaj liczbe zajetych zlacz PCI " << endl;
 	o >> p.PCIzajete;
-	o >> p.soket;
+	o >> p.procesor;
 	for (int i = 0; i < p.karty.size(); i++) {
 		p.dzialka();
 		o >> p.karty[i];
@@ -322,19 +324,19 @@ void PlytaStacjonarna::WymienProcka() {
 	soket2.Spec();
 	dzialka();
 	cout << "Probuje wstawic procesor nr.1" << endl;
-	if (soket == soket1)
-		soket = soket1;
+	if (procesor == soket1)
+		procesor = soket1;
 	dzialka();
 	cout << "Probuje wstawic procesor nr.2" << endl;
-	if (soket == soket2)
-		soket = soket2;
+	if (procesor == soket2)
+		procesor = soket2;
 	dzialka();
 	cout << "Aktualny procesor" << endl;
 	SoketSpec();
 }
 
 void PlytaStacjonarna::SoketSpec() {
-	soket.Spec();
+	procesor.Spec();
 	dzialka();
 }
 
@@ -347,7 +349,7 @@ void PlytaStacjonarna::dzialka() {
 }
 
 int PlytaStacjonarna::ZwrocLiczbePlyt() {
-	return iloscPlyt;
+	return liczbaPlyt;
 }
 
 

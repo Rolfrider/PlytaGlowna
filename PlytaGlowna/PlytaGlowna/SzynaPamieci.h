@@ -2,32 +2,40 @@
 #include<string>
 #include<ctime>
 #include <cstdlib>
-//#include"Poprawnosc.h"
+
 #include<iostream>
 using namespace std;
 
-//enum Taktowanie{ Niskie=1866, Srednie=2133, Wysokie=2400 };
-//enum Pojemnosc { Mobilna =2 , Mala = 4, Srednia= 8, Duza = 16 };
 
+/// Klasa przechowujaca dane o pamieci RAM plyty
 class SzynaPamieci
 {
 public:
+	///Konstruktor domyslny
 	SzynaPamieci();
+	///Konstruktor z parametrami
 	SzynaPamieci(int poj, int tak);
+	///Konstruktor dla pamieci mobilnej
 	SzynaPamieci(bool mobilna);
+	///Destruktor
 	~SzynaPamieci();
+	///Funkcja przetaktowyjaca pamiec na wysze taktowanie
 	void PrzetaktujGora(SzynaPamieci &ram);
+	///Funkcja przetaktowyjaca pamiec na nizsze taktowanie
 	void PrzetaktujDol(SzynaPamieci &ram);
+	/// operator strumieniowy << wypisujacy informacje o obiekcie do strumienia wyjsciowego
 	friend ostream& operator<<(ostream &o, SzynaPamieci &s);
+	/// operator strumieniowy >> wypisujacy informacje o obiekcie do strumienia wejsciowego
 	friend istream& operator >> (istream &o, SzynaPamieci &p);
-	//SzynaPamieci& operator=(SzynaPamieci &s);
 	
 	
 private:
-	string producent;
-	int pojemnosc;
-	int taktowanie;
+	string producent;///< nazwa producenta pamieci
+	int pojemnosc;///< pojemnosc pamieci 
+	int taktowanie;///< wysokosc taktowania pamieci
+	///Funkcja losujaca wysokosc taktowania
 	int losujTaktowanie();
+	///Funkcja losujaca pojemnosc pamieci
 	int losujPojemnosc();
 	
 };

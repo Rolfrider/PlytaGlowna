@@ -12,15 +12,15 @@ PlytaGamingowa::PlytaGamingowa()
 	szerokosc = 305;
 	dlugosc = 244;
 	waga = 222.1;
-	iloscPlyt++;
-	iloscSzyn = 4;
+	liczbaPlyt++;
+	liczbaSzyn = 4;
 	wejsciaPCI = 3;
 	szynyZajete = 2;
 	PCIzajete = 2;
 	karty.clear();
 	RAM.clear();
-	RAM.reserve(iloscSzyn);// Rezerwuje nam miejsce na max tyle elementów ile jest szyn
-	if (iloscSzyn != 0)
+	RAM.reserve(liczbaSzyn);// Rezerwuje nam miejsce na max tyle elementów ile jest szyn
+	if (liczbaSzyn != 0)
 	{
 		for (int i = 0; i < szynyZajete; i++)
 		{
@@ -45,7 +45,7 @@ ostream& operator << (ostream &s, PlytaGamingowa &p) {
 	cout << "Szerokosc w mm : "; s << p.szerokosc << endl;
 	cout << "Dlugosc w mm "; s << p.dlugosc << endl;
 	cout << "Waga : "; s << p.waga; cout << " gram"; s << endl;
-	cout << "Dostepne szyny pamieci: "; s << p.iloscSzyn << endl;;
+	cout << "Dostepne szyny pamieci: "; s << p.liczbaSzyn << endl;;
 	cout << " Zajete szyny pamieci : "; s << p.szynyZajete << endl;
 	cout << "Dostepne zlacza PCI: "; s << p.wejsciaPCI << endl;
 	cout << " Zajete zlacza PCI: "; s << p.PCIzajete << endl;
@@ -53,7 +53,7 @@ ostream& operator << (ostream &s, PlytaGamingowa &p) {
 	cout << "Cechy szczegolne : "; s << p.cechySzczegolne << endl;
 	cout << "Material z ktorego zostala wykonana plyta : "; s << p.material << endl;
 	p.dzialka();
-	s << p.soket;
+	s << p.procesor;
 	for (int i = 0; i < p.karty.size(); i++) {
 		p.dzialka();
 		s << p.karty[i];
@@ -76,7 +76,7 @@ istream& operator >> (istream &o, PlytaGamingowa &p) {
 	cout << "Podaj wage w gramch plyty :" << endl;
 	o >> p.waga;
 	cout << "Podaj liczbe dostepnych szyn pamieci" << endl;
-	o >> p.iloscSzyn;
+	o >> p.liczbaSzyn;
 	cout << "Podaj liczbe zajetych szyn pamieci " << endl;
 	o >> p.szynyZajete;	
 	cout << "Podaj liczbe zlaczy PCI" << endl;
@@ -90,7 +90,7 @@ istream& operator >> (istream &o, PlytaGamingowa &p) {
 	getline(o, p.cechySzczegolne);
 	cout << "Podaj material z ktorego zostala wykonana plyta : " << endl;
 	getline(o, p.material);
-	o >> p.soket;
+	o >> p.procesor;
 	
 	for (int i = 0; i < p.karty.size(); i++) {
 		p.dzialka();
