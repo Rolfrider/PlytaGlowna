@@ -111,15 +111,15 @@ int main()
 void test()
 {
 	cout << endl;
-	cout << "1. Test metod wirualnych na wektorze" << endl;
+	cout << "1. Test metod wirualnych na wektorze i tablicy " << endl;
 	cout << "2. Test z pierwszego projektu" << endl;
 	cout << "3. Powrot" << endl;
 
 	switch (Wprowadzanie_inta("Jakie testy chcesz wykonac?", 1, 3)) {
 		case 1:
 		{
-			cout << "Test metod wirualnych na wektorze" << endl;
-			cout << "Dodajemy nasze obiekty do vectora" << endl;
+			
+			cout << "Testujemy metody wirtualne na wektorze" << endl;
 			cout << endl;
 			plyty.push_back(&s);
 			plyty.push_back(&g);
@@ -133,7 +133,25 @@ void test()
 				getchar();
 				system("cls");
 			}
+			cout << "Testujemy metody wirtualne na tablicy" << endl;
+			cout << " Wciœnij ENTER, aby kontynuowac " << endl;
+			getchar();
+			PlytaGlowna *plyty[3];
+			plyty[0] = &s;
+			plyty[1] = &g;
+			plyty[2] = &m;
+			for (int i = 0; i < 3; i++)
+			{
+				plyty[i]->stan();
+				cout << endl;
+				plyty[i]->wypiszDane();
+				cout << " Wciœnij ENTER, aby kontynuowac " << endl;
+				getchar();
+				system("cls");
+			}
+
 			break;
+
 		}
 		case 2:
 		{
