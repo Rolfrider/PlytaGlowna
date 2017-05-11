@@ -67,7 +67,7 @@ void PlytaMobilna::stan() {
 
 void PlytaMobilna::wpiszDoPliku() {
 	fstream plik;
-	plik.open("PlytaMobilna.txt", ios::in);
+	plik.open("PlytaMobilna.txt", ios::out | ios::trunc);
 	if (plik.good() == true)
 	{
 
@@ -84,7 +84,7 @@ void PlytaMobilna::wpiszDoPliku() {
 
 void PlytaMobilna::wczytajZPliku() {
 	fstream plik;
-	plik.open("PlytaMobilna.txt", ios::out);
+	plik.open("PlytaMobilna.txt", ios::in);
 	if (plik.good() == true)
 	{
 		plik >> *this;

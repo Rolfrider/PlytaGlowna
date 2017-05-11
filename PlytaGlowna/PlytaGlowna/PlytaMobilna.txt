@@ -1,0 +1,33 @@
+Samszong
+10.3
+4.8
+20
+4
+1.6
+2134
+1
+karta graficzna
+Qualcomm
+2
+
+
+MobileMem
+1866
+2
+
+Zyroskop
+ZyroInc
+1
+
+Czujnik swiatla
+CzujInc
+1
+
+WiFi
+WiFiInc
+500
+
+Komunikator GSM
+GSMInc
+1
+
